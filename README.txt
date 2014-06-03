@@ -3,6 +3,13 @@ GENe RNA Catalogger
 
 The Biology Department of the College of William and Mary is conducting research using many samples of RNA from the species Xenopus Laevus, otherwise known as the African clawed frog. The research group is headed by Dr. Saha, and previously they were using a software tool known as BLAST provided by the National Center for Biotechnolgoy Information in order to catalog each of their unidentified RNA sequences. Each sequence of RNA needed to be submitted to this tool individually, and one of the researchers needed to identify the best candidate of the many that BLAST provides. After initially attempting to do this by hand with their 32,000 samples, Dr. Saha decided she would like this process automated. This will be my first extracurricular software development project as a rising sophomore at the College of William and Mary, and I hope to keep frequent updates.
 
+Required Software for Use
+=========================
+Biopython
+numPy
+wxPython
+Python Excel
+
 
 Outline
 =======
