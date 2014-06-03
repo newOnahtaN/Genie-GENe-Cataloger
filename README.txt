@@ -20,5 +20,7 @@ Version One
 -----------
 Version one will only have tasks one and two above implemented.
 
+Update 1:  The implementation of this process proved to be much simpler than expected.  However, one large problem remains - queries are incredibly slow. 17-100 seconds per query, which would make a potential run time for this program over all 32,000 sequences close to a month.  I'm thinking that the fact that the main portion of the program was easier to implement than expected will allow for me to put in feature that will allow for the queries to either be run online or on a local database.  It would require a large amount of storage to do so, so I will leave it up to Dr. Saha to decide which is more valuable to her - time, or storage.  Progress so far is encouraging.
+
 
 
