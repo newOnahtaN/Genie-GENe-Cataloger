@@ -8,7 +8,7 @@ Required Software for Use
 Biopython
 numPy
 wxPython
-Python Excel
+Python Excel : xlwt , xlrd , xlutils
 
 
 Outline
