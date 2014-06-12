@@ -10,6 +10,8 @@ numPy
 wxPython
 Python Excel : xlwt , xlrd , xlutils
 
+In Order to Run Locally, Including ability to update: Perl, BLAST+, nr and nt databases
+
 
 Outline
 =======
@@ -29,7 +31,21 @@ Version one will only have tasks one and two above implemented.
 
 Update 1:  The implementation of this process proved to be much simpler than expected.  However, one large problem remains - queries are incredibly slow. 17-100 seconds per query, which would make a potential run time for this program over all 32,000 sequences close to a month.  I'm thinking that the fact that the main portion of the program was easier to implement than expected will allow for me to put in feature that will allow for the queries to either be run online or on a local database.  It would require a large amount of storage to do so, so I will leave it up to Dr. Saha to decide which is more valuable to her - time, or storage.  Progress so far is encouraging.
 
-Update 2:  Today's work incorporated the ability to read from and write into excel files.  Right now, the exact directory has to be supplied in the code for it to read from the right place, and it also has to be an excel file with the entire first column being sequences.  This will be incredibly easy to change when development of a gui begins. I have uploaded an example of what the return excel file should look like when all is said and done.  Very encouraging!
+Update 2:  Today's work incorporated the ability to read from and write into excel files.  Right now, the exact directory has to be supplied in the code for it to read from the right place, and it also has to be an excel file with the entire first column being sequences.  This will be incredibly easy to change when development of a gui begins. I have uploaded an example of what the return excel file should look like when all is said and done.
+
+Update 3:  Here I will document a portion of correspondence between myself and the Biologists: 
+
+	Good afternoon Sam,
+
+	All day yesterday, I was wrangling with some really tough problems with this program. Unfortunately, the program takes a VERY long time, and no matter what I seem to do, or how I approach the 		problem, it seems to be this way.  I'm going to need you to pick the best of too inconveniences, and feel free to run it by Dr. Saha if you need to. 
+
+	After much research, it seems entirely impossible to send batch queries to the NCBI database, not because it is too difficult to set up, but becasue NCBI has specifically set up provisions to keep 		people from doing so.  As a result, if one wishes to automate this process as we are, they have to send the sequences one by one, and wait in line in the portal with everyone else who wishes to do 		so.  As far as I can tell, this portal is entirely different from the one hosted on the NCBI website, hence why a query there takes but a few seconds, but a query through the provided server portal 		takes hundreds. To get an idea of exactly how long each query is taking, I have attached an excel spreadsheet where the two rightmost columns are load times for each sequence.  You'll see that these 		daytime queries are minutes long.  When this program was first written, I saw times below 20 seconds frequently, but recently, times like this have been displayed.  What this essentially means above 		anything else is that the server is entirely unpredictable.  It will get the job done, but the time it takes is extremely variable.
+
+	The alternative is something you already know.  In a vain attempt to combat load times, I set up the database locally on my computer, which, while difficult, was not as impossible as we first 		thought. Some thoughts on this alternative; a query on a computer such as mine (I have a very high end computer) takes about a minute. That seems to be a bit faster than the online query at most 		times, but occasionally, as I expect to see on  weekends, the online query process is faster than this.  If you wanted to set it up locally on your mac, it would take a bit more time than it would to 	set up on a windows PC because my program is written for windows and the software that allows one to run Blast locally uses the command line in order to execute.  Here's the big one: unlike the 		server queries, which just sends off an http request in the background and uses no more than 30 mb of ram, this process would essentially need a dedicated processor because it eats up 100% of all 		resources on the computer.  Like I said, my computer is rather high end and it locked up almost immediately while running the BLAST algorithm. Essentially, this alternative may speed up the process, 		but only marginally, and not without some effort.   
+
+	I am very sorry to say that while this program will definitely work, regardless of the route taken, it seems like it is going to take a very very long time, and on top of that, that amount of time 		cannot be easily predicted.  I hope that you will be able to instruct me on which route you would like me to take, server queries or local queries.  I will do my best to make whatever you choose 		perform the best it can.
+
+As was stated in this correspondence, the program works well, but I am having difficulty speeding it up. Almost two days went into setting up the NCBI databases locally to run a local version of the BLAST alogrithm, but in the end all of the effort seemed to be wasted because it really didn't speed up the process very much at all.
 
 
 
