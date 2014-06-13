@@ -1,0 +1,389 @@
+<?xml version="1.0"?>
+<!DOCTYPE BlastOutput PUBLIC "-//NCBI//NCBI BlastOutput/EN" "http://www.ncbi.nlm.nih.gov/dtd/NCBI_BlastOutput.dtd">
+<BlastOutput>
+  <BlastOutput_program>blastn</BlastOutput_program>
+  <BlastOutput_version>BLASTN 2.2.29+</BlastOutput_version>
+  <BlastOutput_reference>Zheng Zhang, Scott Schwartz, Lukas Wagner, and Webb Miller (2000), &quot;A greedy algorithm for aligning DNA sequences&quot;, J Comput Biol 2000; 7(1-2):203-14.</BlastOutput_reference>
+  <BlastOutput_db>nt</BlastOutput_db>
+  <BlastOutput_query-ID>Query_1</BlastOutput_query-ID>
+  <BlastOutput_query-def>1</BlastOutput_query-def>
+  <BlastOutput_query-len>561</BlastOutput_query-len>
+  <BlastOutput_param>
+    <Parameters>
+      <Parameters_expect>0.001</Parameters_expect>
+      <Parameters_sc-match>1</Parameters_sc-match>
+      <Parameters_sc-mismatch>-2</Parameters_sc-mismatch>
+      <Parameters_gap-open>0</Parameters_gap-open>
+      <Parameters_gap-extend>0</Parameters_gap-extend>
+      <Parameters_filter>L;m;</Parameters_filter>
+    </Parameters>
+  </BlastOutput_param>
+<BlastOutput_iterations>
+<Iteration>
+  <Iteration_iter-num>1</Iteration_iter-num>
+  <Iteration_query-ID>Query_1</Iteration_query-ID>
+  <Iteration_query-def>1</Iteration_query-def>
+  <Iteration_query-len>561</Iteration_query-len>
+<Iteration_hits>
+<Hit>
+  <Hit_num>1</Hit_num>
+  <Hit_id>gi|148228638|ref|NM_001090457.1|</Hit_id>
+  <Hit_def>Xenopus laevis hes-related family bHLH transcription factor with YRPW motif 1 (hey1), mRNA &gt;gi|54038117|gb|BC084410.1| Xenopus laevis bHLH protein Hesr-1/Hey1, mRNA (cDNA clone MGC:86293 IMAGE:7020309), complete cds</Hit_def>
+  <Hit_accession>NM_001090457</Hit_accession>
+  <Hit_len>2095</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>1029.7</Hsp_bit-score>
+      <Hsp_score>557</Hsp_score>
+      <Hsp_evalue>0</Hsp_evalue>
+      <Hsp_query-from>1</Hsp_query-from>
+      <Hsp_query-to>561</Hsp_query-to>
+      <Hsp_hit-from>1399</Hsp_hit-from>
+      <Hsp_hit-to>1958</Hsp_hit-to>
+      <Hsp_query-frame>1</Hsp_query-frame>
+      <Hsp_hit-frame>1</Hsp_hit-frame>
+      <Hsp_identity>560</Hsp_identity>
+      <Hsp_positive>560</Hsp_positive>
+      <Hsp_gaps>1</Hsp_gaps>
+      <Hsp_align-len>561</Hsp_align-len>
+      <Hsp_qseq>ATTATCGTTTTTCCCTATCTTCCATCTGTAAACCTGTTTCCCAACATTGACATTTTTTGTTTTGTTTTTTTAAATCTTNATTCTGAAATATCCTTCTGGTTTGCTAATATTTTCAGCTATAAAGCTATAGCTTACTTATGTTAACCTGTTTTTTTGAATTTTATATTTCCAAGCGTTGACAAATCAGATTTATCAGCTCTATACAAGAATCAACAGCAATGCCTTCAGTAAAGCTGTGCATGGAAGGGGTGTGTGCTGAAAAGTGGGGCCACAAGCATTCAGAGGGTTAAACATAACACTGAGTGCACATACAGTGGTATAATAGATGCCTATAGCACATGTATTTTGCACATGAACCCGGACTATACAACATTTCAACAGAGTTTCTATTGTCTAATGTATTTTATTACCTGGCGCACTAGAACTTTATTTAACAAGGAGACTAATTTAAATCAGAATCCACTACATCCCTGTATATAATACACGTTGTGCTTGGGTGCGACATCACCCGAAATGATGGACTGAATTTAATCACTGTTATCCTGGTCCTTTTTTGATGAA</Hsp_qseq>
+      <Hsp_hseq>ATTATCGTTTTTCCCTATCTTCCATCTGTAAACCTGTTTCCCAACATTGACATTTTTTGTTTTGTTTTTTTAAATCTT-ATTCTGAAATATCCTTCTGGTTTGCTAATATTTTCAGCTATAAAGCTATAGCTTACTTATGTTAACCTGTTTTTTTGAATTTTATATTTCCAAGCGTTGACAAATCAGATTTATCAGCTCTATACAAGAATCAACAGCAATGCCTTCAGTAAAGCTGTGCATGGAAGGGGTGTGTGCTGAAAAGTGGGGCCACAAGCATTCAGAGGGTTAAACATAACACTGAGTGCACATACAGTGGTATAATAGATGCCTATAGCACATGTATTTTGCACATGAACCCGGACTATACAACATTTCAACAGAGTTTCTATTGTCTAATGTATTTTATTACCTGGCGCACTAGAACTTTATTTAACAAGGAGACTAATTTAAATCAGAATCCACTACATCCCTGTATATAATACACGTTGTGCTTGGGTGCGACATCACCCGAAATGATGGACTGAATTTAATCACTGTTATCCTGGTCCTTTTTTGATGAA</Hsp_hseq>
+      <Hsp_midline>|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>2</Hit_num>
+  <Hit_id>gi|8979885|emb|AJ401271.1|</Hit_id>
+  <Hit_def>Xenopus laevis mRNA for bHLH protein Hesr-1/Hey1 (xbc8 gene)</Hit_def>
+  <Hit_accession>AJ401271</Hit_accession>
+  <Hit_len>1929</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>1029.7</Hsp_bit-score>
+      <Hsp_score>557</Hsp_score>
+      <Hsp_evalue>0</Hsp_evalue>
+      <Hsp_query-from>1</Hsp_query-from>
+      <Hsp_query-to>561</Hsp_query-to>
+      <Hsp_hit-from>1327</Hsp_hit-from>
+      <Hsp_hit-to>1886</Hsp_hit-to>
+      <Hsp_query-frame>1</Hsp_query-frame>
+      <Hsp_hit-frame>1</Hsp_hit-frame>
+      <Hsp_identity>560</Hsp_identity>
+      <Hsp_positive>560</Hsp_positive>
+      <Hsp_gaps>1</Hsp_gaps>
+      <Hsp_align-len>561</Hsp_align-len>
+      <Hsp_qseq>ATTATCGTTTTTCCCTATCTTCCATCTGTAAACCTGTTTCCCAACATTGACATTTTTTGTTTTGTTTTTTTAAATCTTNATTCTGAAATATCCTTCTGGTTTGCTAATATTTTCAGCTATAAAGCTATAGCTTACTTATGTTAACCTGTTTTTTTGAATTTTATATTTCCAAGCGTTGACAAATCAGATTTATCAGCTCTATACAAGAATCAACAGCAATGCCTTCAGTAAAGCTGTGCATGGAAGGGGTGTGTGCTGAAAAGTGGGGCCACAAGCATTCAGAGGGTTAAACATAACACTGAGTGCACATACAGTGGTATAATAGATGCCTATAGCACATGTATTTTGCACATGAACCCGGACTATACAACATTTCAACAGAGTTTCTATTGTCTAATGTATTTTATTACCTGGCGCACTAGAACTTTATTTAACAAGGAGACTAATTTAAATCAGAATCCACTACATCCCTGTATATAATACACGTTGTGCTTGGGTGCGACATCACCCGAAATGATGGACTGAATTTAATCACTGTTATCCTGGTCCTTTTTTGATGAA</Hsp_qseq>
+      <Hsp_hseq>ATTATCGTTTTTCCCTATCTTCCATCTGTAAACCTGTTTCCCAACATTGACATTTTTTGTTTTGTTTTTTTAAATCTT-ATTCTGAAATATCCTTCTGGTTTGCTAATATTTTCAGCTATAAAGCTATAGCTTACTTATGTTAACCTGTTTTTTTGAATTTTATATTTCCAAGCGTTGACAAATCAGATTTATCAGCTCTATACAAGAATCAACAGCAATGCCTTCAGTAAAGCTGTGCATGGAAGGGGTGTGTGCTGAAAAGTGGGGCCACAAGCATTCAGAGGGTTAAACATAACACTGAGTGCACATACAGTGGTATAATAGATGCCTATAGCACATGTATTTTGCACATGAACCCGGACTATACAACATTTCAACAGAGTTTCTATTGTCTAATGTATTTTATTACCTGGCGCACTAGAACTTTATTTAACAAGGAGACTAATTTAAATCAGAATCCACTACATCCCTGTATATAATACACGTTGTGCTTGGGTGCGACATCACCCGAAATGATGGACTGAATTTAATCACTGTTATCCTGGTCCTTTTTTGATGAA</Hsp_hseq>
+      <Hsp_midline>|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>3</Hit_num>
+  <Hit_id>gi|89886047|ref|NM_001007910.2|</Hit_id>
+  <Hit_def>Xenopus (Silurana) tropicalis hes-related family bHLH transcription factor with YRPW motif 1 (hey1), mRNA &gt;gi|77626730|emb|CR760684.2| Xenopus tropicalis finished cDNA, clone TEgg037i08</Hit_def>
+  <Hit_accession>NM_001007910</Hit_accession>
+  <Hit_len>2035</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>488.636</Hsp_bit-score>
+      <Hsp_score>264</Hsp_score>
+      <Hsp_evalue>2.49144e-134</Hsp_evalue>
+      <Hsp_query-from>53</Hsp_query-from>
+      <Hsp_query-to>555</Hsp_query-to>
+      <Hsp_hit-from>1438</Hsp_hit-from>
+      <Hsp_hit-to>1973</Hsp_hit-to>
+      <Hsp_query-frame>1</Hsp_query-frame>
+      <Hsp_hit-frame>1</Hsp_hit-frame>
+      <Hsp_identity>455</Hsp_identity>
+      <Hsp_positive>455</Hsp_positive>
+      <Hsp_gaps>41</Hsp_gaps>
+      <Hsp_align-len>540</Hsp_align-len>
+      <Hsp_qseq>TTTTTTGTTTTGTTTTTTTAAATCTTNATTCT-GAA-AT--A---TCCTTCTGGTTTGCTAATATTTTCAGC--T---A------TAAAGCTATAGCTTACTTATGTTAACCTGTTTTTTTGAATTTTATATTTCCAAGCGTTGACAAATCAGATTTATCAGCTC-TATA-CAAGAATCAACAGCAATGCCTTCAGTAAAGCTGTGCATGGAAG-GGGTGTGTGCTGAAAAGTGGG--GC-CA-CA--AGCATTCAGAGGGTTAAACATAACACTGAGTGCACATACAGTGGTATAATAGATGCCTATAGCACATGTATTTTGCACATGAACCCGGACTATACAACATTTCAACAGAGTTTCTATTGTCTAATGTATTTTATTACCTGGCGCACTAGAACTTTATTTAACAAGGAGACTAATTTAAATCAGAATCCACTACATCCCTGTATATAATACACGTTGTGCTTGGGTGCGACATCACCCGAAA---TGA--T--G--G-ACTGAATTTAATCACTGTTATCCTGGTCCTTTTTT</Hsp_qseq>
+      <Hsp_hseq>TTTTTTTTTTTTTTTTTTTAAATCTT-GTTCTAAAATATCCAGTTTCCTTCTGGTTTGCTAATATTTTGAGCGTTGAGATGTCCTTAAAGCTATTGCCTACTTACATTAAACTG-TTTTTTGAGTTTTATATTTCCAAGCGTTGACAAATCAGATTTATCAACTCCAATAGCAAGAACCAATAGCAAAGCCTTCAGTAGACCTGTGAGTGGAAGTTGGTGTGTG--GAATAGTGGGCCGCACATTAGCAGCATTCAGAGGGTTAAATGGAACACTGAGTGCATATACAGTGGTACAATAGATGCCTATAGCCCATGTATTTTGCACAGGAACCCGGACTATACAACATTTCAACAGAGTTTCTATTGTATAATGTATTTTATGACCTGATGCACTAGAACTTTATTTAACAAGTAGACTAATTTAAATCAGAATCCACTACATCCCTGTATATAATACACCTTGTGCTTGGATGGGACATCAACTGAAAAGATGAACTCTGCTGTACTGAGATTAATCACTGTTATTCTGGTCATTTTTT</Hsp_hseq>
+      <Hsp_midline>|||||| |||| ||||||||||||||  ||||  || ||  |   ||||||||||||||||||||||| |||  |   |      ||||||||| || ||||||  |||| ||| |||||||| ||||||||||||||||||||||||||||||||||||| |||  ||| |||||| ||| ||||| |||||||||| | |||||  ||||||  ||||||||  ||| ||||||  || ||  |  ||||||||||||||||||   ||||||||||||| ||||||||||| |||||||||||||||| ||||||||||||||| |||||||||||||||||||||||||||||||||||||||| ||||||||||||| |||||  ||||||||||||||||||||||| |||||||||||||||||||||||||||||||||||||||||||||| |||||||||| || ||||||| | ||||   |||  |  |  | |||||  |||||||||||||| |||||| ||||||</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+</Iteration_hits>
+  <Iteration_stat>
+    <Statistics>
+      <Statistics_db-num>23162903</Statistics_db-num>
+      <Statistics_db-len>59357918907</Statistics_db-len>
+      <Statistics_hsp-len>33</Statistics_hsp-len>
+      <Statistics_eff-space>30937390761024</Statistics_eff-space>
+      <Statistics_kappa>0.46</Statistics_kappa>
+      <Statistics_lambda>1.28</Statistics_lambda>
+      <Statistics_entropy>0.85</Statistics_entropy>
+    </Statistics>
+  </Iteration_stat>
+</Iteration>
+<Iteration>
+  <Iteration_iter-num>2</Iteration_iter-num>
+  <Iteration_query-ID>Query_2</Iteration_query-ID>
+  <Iteration_query-def>2</Iteration_query-def>
+  <Iteration_query-len>560</Iteration_query-len>
+<Iteration_hits>
+<Hit>
+  <Hit_num>1</Hit_num>
+  <Hit_id>gi|148223486|ref|NM_001088395.1|</Hit_id>
+  <Hit_def>Xenopus laevis RRM-type RNA-binding protein hermes (rbpms), mRNA &gt;gi|4324638|gb|AF107889.1|AF107889 Xenopus laevis RRM-type RNA-binding protein hermes mRNA, complete cds</Hit_def>
+  <Hit_accession>NM_001088395</Hit_accession>
+  <Hit_len>1719</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>1026.01</Hsp_bit-score>
+      <Hsp_score>555</Hsp_score>
+      <Hsp_evalue>0</Hsp_evalue>
+      <Hsp_query-from>1</Hsp_query-from>
+      <Hsp_query-to>560</Hsp_query-to>
+      <Hsp_hit-from>1134</Hsp_hit-from>
+      <Hsp_hit-to>1693</Hsp_hit-to>
+      <Hsp_query-frame>1</Hsp_query-frame>
+      <Hsp_hit-frame>1</Hsp_hit-frame>
+      <Hsp_identity>558</Hsp_identity>
+      <Hsp_positive>558</Hsp_positive>
+      <Hsp_gaps>0</Hsp_gaps>
+      <Hsp_align-len>560</Hsp_align-len>
+      <Hsp_qseq>GGAAGGTTTGCATGTTTGTTATAGCATGAATTAACTTCTTGATGTAAGCGTTAAAACATTAATGTAAGAATCTTTTCAGNATTAGCTTTTGCTTCTGTAAAAGCTTTGATTTTTCCCATGCCTCCTTCTACCAACAAATTGGTCAAATTGCACTGTTCCCAACTAACATCTTCTGTTTTTCTGTCTGTATTCTGCCCTTTCATTTTCATTGAGTATTTGTGCTTGCCAAATGTAATGCAACCATAATGGGAAACAGAGCAATAGAACCAGTATTTTTGTAACATGTTAATAAGGATATATTTATGCAGTTTGTTTTTGTGTGATTATTAAAGAAAAATATTAAATCTATTATAAGTTAATATTATGTTTAAAAGCTTGAAGATTCTGTATGGTTGTACTGCTGTACTTTATGAATAACTGCAAGTTTTGTGTTCCGTTTTGCATTCTGCTTGATATTTCAGTATTATGAAAGATGTCTTACCTGTACAGAGAATGAAATTTCTTTTGCTGATCTTATGTACAGCAAATGAATTTTCTCTTGCCGATCTTATGAGAATGTG</Hsp_qseq>
+      <Hsp_hseq>GGAAGGTTTGCATGTTTGTTATAGCATGAATTAACTTCTTGATGTAAGCGTTAAAACATTAATGTAAGAATCTTTTCAGGATTAGCTTTTGCTTCTGTAAAAGCTTTGATTTTTCCCATGCCTCCTTCTACCAACAAATTGGTCAAATTGCACTGTTCCCAACTAACATCTTCTGTTTTTCTGTCTGTATTCTGCCCTTTCATTTTCATTGAGTATTTGTGCTTGCCAAATGTAATGCAACCATAATGGGAAACAGAGCAATAGAACCAGTATTTTTGTAACATGTTAATAAGGATATATTTATGCAGTTTGTTTTTGTGTGATTATTAAAGAAAAATATTAAATCTATTATAAGTTAATATTATGTTTAAAAGCTTGAAGATTCTGTATGGTTGTACTGCTGTACTTTATGAATAACTGCAAGTTTTGTGTTCCGTTTTGCATTCTGCTTGATATTTCAGTATTATGAAAGATGTATTACCTGTACAGAGAATGAAATTTCTTTTGCTGATCTTATGTACAGCAAATGAATTTTCTCTTGCCGATCTTATGAGAATGTG</Hsp_hseq>
+      <Hsp_midline>||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>2</Hit_num>
+  <Hit_id>gi|66912012|gb|BC097507.1|</Hit_id>
+  <Hit_def>Xenopus laevis RRM-type RNA-binding protein hermes, mRNA (cDNA clone MGC:114601 IMAGE:6316545), complete cds</Hit_def>
+  <Hit_accession>BC097507</Hit_accession>
+  <Hit_len>1624</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>1013.08</Hsp_bit-score>
+      <Hsp_score>548</Hsp_score>
+      <Hsp_evalue>0</Hsp_evalue>
+      <Hsp_query-from>1</Hsp_query-from>
+      <Hsp_query-to>560</Hsp_query-to>
+      <Hsp_hit-from>1034</Hsp_hit-from>
+      <Hsp_hit-to>1591</Hsp_hit-to>
+      <Hsp_query-frame>1</Hsp_query-frame>
+      <Hsp_hit-frame>1</Hsp_hit-frame>
+      <Hsp_identity>556</Hsp_identity>
+      <Hsp_positive>556</Hsp_positive>
+      <Hsp_gaps>2</Hsp_gaps>
+      <Hsp_align-len>560</Hsp_align-len>
+      <Hsp_qseq>GGAAGGTTTGCATGTTTGTTATAGCATGAATTAACTTCTTGATGTAAGCGTTAAAACATTAATGTAAGAATCTTTTCAGNATTAGCTTTTGCTTCTGTAAAAGCTTTGATTTTTCCCATGCCTCCTTCTACCAACAAATTGGTCAAATTGCACTGTTCCCAACTAACATCTTCTGTTTTTCTGTCTGTATTCTGCCCTTTCATTTTCATTGAGTATTTGTGCTTGCCAAATGTAATGCAACCATAATGGGAAACAGAGCAATAGAACCAGTATTTTTGTAACATGTTAATAAGGATATATTTATGCAGTTTGTTTTTGTGTGATTATTAAAGAAAAATATTAAATCTATTATAAGTTAATATTATGTTTAAAAGCTTGAAGATTCTGTATGGTTGTACTGCTGTACTTTATGAATAACTGCAAGTTTTGTGTTCCGTTTTGCATTCTGCTTGATATTTCAGTATTATGAAAGATGTCTTACCTGTACAGAGAATGAAATTTCTTTTGCTGATCTTATGTACAGCAAATGAATTTTCTCTTGCCGATCTTATGAGAATGTG</Hsp_qseq>
+      <Hsp_hseq>GGAAGGTTTGCATGTTTGTTATAGCATGAATTAACTTCTTGATGTAAGCGTTAAAACATTAATGTA--AATCTTTTCAGGATTAGCTTTTGCTTCTGTAAAAGCTTTGATTTTTCCCATGCCTCCTTCTACCAACAAATTGGTCAAATTGCACTGTTCCCAACTAACATCTTCTGTTTTTCTGTCTGTATTCTGCCCTTTCATTTTCATTGAGTATTTGTGCTTGCCAAATGTAATGCAATCATAATGGGAAACAGAGCAATAGAACCAGTATTTTTGTAACATGTTAATAAGGATATATTTATGCAGTTTGTTTTTGTGTGATTATTAAAGAAAAATATTAAATCTATTATAAGTTAATATTATGTTTAAAAGCTTGAAGATTCTGTATGGTTGTACTGCTGTACTTTATGAATAACTGCAAGTTTTGTGTTCCGTTTTGCATTCTGCTTGATATTTCAGTATTATGAAAGATGTCTTACCTGTACAGAGAATGAAATTTCTTTTGCTGATCTTATGTACAGCAAATGAATTTTCTCTTGCCGATCTTATGAGAATGTG</Hsp_hseq>
+      <Hsp_midline>||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||  ||||||||||| |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>3</Hit_num>
+  <Hit_id>gi|148222883|ref|NM_001094266.1|</Hit_id>
+  <Hit_def>Xenopus laevis RNA binding protein with multiple splicing 2 (rbpms2), mRNA &gt;gi|51703925|gb|BC081153.1| Xenopus laevis MGC84222 protein, mRNA (cDNA clone MGC:84222 IMAGE:6955186), complete cds</Hit_def>
+  <Hit_accession>NM_001094266</Hit_accession>
+  <Hit_len>1728</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>438.776</Hsp_bit-score>
+      <Hsp_score>237</Hsp_score>
+      <Hsp_evalue>2.54006e-119</Hsp_evalue>
+      <Hsp_query-from>1</Hsp_query-from>
+      <Hsp_query-to>518</Hsp_query-to>
+      <Hsp_hit-from>1121</Hsp_hit-from>
+      <Hsp_hit-to>1644</Hsp_hit-to>
+      <Hsp_query-frame>1</Hsp_query-frame>
+      <Hsp_hit-frame>1</Hsp_hit-frame>
+      <Hsp_identity>447</Hsp_identity>
+      <Hsp_positive>447</Hsp_positive>
+      <Hsp_gaps>42</Hsp_gaps>
+      <Hsp_align-len>542</Hsp_align-len>
+      <Hsp_qseq>GGAAGGTTTGCATGTTTGTTATAGCATGAATTAA----CTTCTTGATGTAAGCGTTA-A-AACATTA-ATGTAAGAATC-TTTTCAGNATTAGC-TTTTGCTTCTGTAAAAGCTTTGATTTTTCCCATGCCTCCTTCTACCAACAAATTGGTCAAATTGCACTGTTCCC-AACTAACAT-CTTCTGTTTTTCTGTCTGTA-TTCTGCCCTTTCATTTTCATT---GAGTATTTGTGCTTGCCAAATGTAATGCAACCATAATGGGAAACAGAGCAATAGAACCAGTATTTTTGTAACATGTTAATAAGGATATATTTATGCAGTTT--G----TTTTTGTGTGATTATTAAAGAAAAATATTAAATCTATTATAAGTTAATATTATGTTTAAAAGCTTGAAGATTCTGTATGGTT-GTACTGCTGTACTTTATGAATAAC--TGCAAGTTTTGTGTTCCGTTTTGCATTCTGCTTGATATTTCAGTATTATGAAAGATGTCTTACCTGTACAGAGAATGAAATTTCTTTTGCTGATCTTATG</Hsp_qseq>
+      <Hsp_hseq>GGAGGGTTTGCATGTT--TTCTAGCATGAATTAAATGTCTACTTGATGTAAATGTTACATAAGGTTAGAGGTAAAAATCATTTTCAGGATTAGCTTTTTGCTTCTGTAGAAGC-TTGGTATTTCCCAAGCTTCCTTCTAC---TAAA-CCGTTAAATTGCACTGTTCCCCACCCACCATCCTTCAGTTTTCATGTCTTTAGTTTTGTCCTTTCATTTTCATTGGAGAGTTTTTGTTCTTGCCATGTGTAATGCAACCTTAATGGGAAACAGAGCAAAAGTACCAGTATTTTTGTAACATGTTAATAAGGAGATATTTATGCATTTTTTGTTTTTTTTTGTGTGATAATTAAAGAAT-ATATTAAATC---TATAAGTTAATGTTATG-----AAGCTTGCCGATTCTGTATGGTTTGT-CTGCTGTACTTTATGAACAATTGTGCAACTTTTGTGTTCCATTTTGCATTCTGCCTGATATTTCAGTATTATGAAAGATGTCTTGCCGGTACAGAG-ATGAATTTTCTCTTGCTGAATTTATG</Hsp_hseq>
+      <Hsp_midline>||| ||||||||||||  || |||||||||||||    || ||||||||||  |||| | ||  ||| | |||| |||| ||||||| |||||| ||||||||||||| |||| ||| | ||||||| || |||||||||    |||   || |||||||||||||||| | | | ||| |||| |||||  ||||| || || || |||||||||||||||   |||| ||||| |||||||  |||||||||||| |||||||||||||||||| || |||||||||||||||||||||||||||||| ||||||||||| |||  |    |||||||||||| |||||||||  ||||||||||   ||||||||||| |||||     |||||||  |||||||||||||| || ||||||||||||||||| ||   ||||| ||||||||||| ||||||||||||| ||||||||||||||||||||||||||||| || |||||||| ||||| ||||| |||||||  |||||</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>4</Hit_num>
+  <Hit_id>gi|512853115|ref|XM_004916001.1|</Hit_id>
+  <Hit_def>PREDICTED: Xenopus (Silurana) tropicalis RNA binding protein with multiple splicing 2 (rbpms2), transcript variant X3, mRNA</Hit_def>
+  <Hit_accession>XM_004916001</Hit_accession>
+  <Hit_len>1719</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>296.584</Hsp_bit-score>
+      <Hsp_score>160</Hsp_score>
+      <Hsp_evalue>1.61774e-076</Hsp_evalue>
+      <Hsp_query-from>201</Hsp_query-from>
+      <Hsp_query-to>518</Hsp_query-to>
+      <Hsp_hit-from>1366</Hsp_hit-from>
+      <Hsp_hit-to>1680</Hsp_hit-to>
+      <Hsp_query-frame>1</Hsp_query-frame>
+      <Hsp_hit-frame>1</Hsp_hit-frame>
+      <Hsp_identity>279</Hsp_identity>
+      <Hsp_positive>279</Hsp_positive>
+      <Hsp_gaps>29</Hsp_gaps>
+      <Hsp_align-len>331</Hsp_align-len>
+      <Hsp_qseq>CATTTTCATT---GAGTATTTGTGCTTGCCAAATGTAATGCAACCATAATGGGAAACAGAGCAATAGAACCAGTATTTTTGTAACATGTTAATAAGGATATATTTATGCAGTTTG--TTT-TTGTGTGATTATTAAAGAAAAATATTAAATCTATTATAAGTTAATATTATGTTTAAAAGCTTGAAGATTCTGTATGGTT-GTACTGCTGTACTTTATGAATAACTG--CAAGTTTT--GTGTTCCGTTTTGCATTCTGCTTGATATTTCAGTATTATGAAAGATGTCTTA--CCTGTACAGAGAATGAAATTTCTTTTGCTGATCTTATG</Hsp_qseq>
+      <Hsp_hseq>CATTTTCATTGGAGAGTTTTTGTTCTTGCCAAGTGTAATGCAACCTTAATGGGAAACTGAGCAAAAGTACCAGTATTTTTGTAACATGTTAATAAGGAGATATTTATGCA-TTTGTTTTTCTTGTGTGATAATTA-TTAAAGA-A-T--A--TA-T-TAAGTTAATATTATGTTAAAAAGCTTGAAGATTCTGTATGGTTTGT-CTGCTGTACTTCATGAACAATTGTGCAATTTTTTTGTGTTCCA-TTTGCATTCTGCTTGATATTTCAGTATTATGAGAGATGTATTTTGCCTGTA--GAG--TGAATTTTCTCTTGCTGATCTTATG</Hsp_hseq>
+      <Hsp_midline>||||||||||   |||| ||||| |||||||| |||||||||||| ||||||||||| |||||| || |||||||||||||||||||||||||||||| ||||||||||| ||||  ||| ||||||||| ||||   ||| | | |  |  || | ||||||||||||||||| ||||||||||||||||||||||||| || ||||||||||| ||||| || ||  ||| ||||  |||||||  |||||||||||||||||||||||||||||||| |||||| ||   ||||||  |||  |||| ||||| ||||||||||||||</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>5</Hit_num>
+  <Hit_id>gi|512853112|ref|XM_002938874.2|</Hit_id>
+  <Hit_def>PREDICTED: Xenopus (Silurana) tropicalis RNA binding protein with multiple splicing 2 (rbpms2), transcript variant X1, mRNA</Hit_def>
+  <Hit_accession>XM_002938874</Hit_accession>
+  <Hit_len>2442</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>296.584</Hsp_bit-score>
+      <Hsp_score>160</Hsp_score>
+      <Hsp_evalue>1.61774e-076</Hsp_evalue>
+      <Hsp_query-from>201</Hsp_query-from>
+      <Hsp_query-to>518</Hsp_query-to>
+      <Hsp_hit-from>1444</Hsp_hit-from>
+      <Hsp_hit-to>1758</Hsp_hit-to>
+      <Hsp_query-frame>1</Hsp_query-frame>
+      <Hsp_hit-frame>1</Hsp_hit-frame>
+      <Hsp_identity>279</Hsp_identity>
+      <Hsp_positive>279</Hsp_positive>
+      <Hsp_gaps>29</Hsp_gaps>
+      <Hsp_align-len>331</Hsp_align-len>
+      <Hsp_qseq>CATTTTCATT---GAGTATTTGTGCTTGCCAAATGTAATGCAACCATAATGGGAAACAGAGCAATAGAACCAGTATTTTTGTAACATGTTAATAAGGATATATTTATGCAGTTTG--TTT-TTGTGTGATTATTAAAGAAAAATATTAAATCTATTATAAGTTAATATTATGTTTAAAAGCTTGAAGATTCTGTATGGTT-GTACTGCTGTACTTTATGAATAACTG--CAAGTTTT--GTGTTCCGTTTTGCATTCTGCTTGATATTTCAGTATTATGAAAGATGTCTTA--CCTGTACAGAGAATGAAATTTCTTTTGCTGATCTTATG</Hsp_qseq>
+      <Hsp_hseq>CATTTTCATTGGAGAGTTTTTGTTCTTGCCAAGTGTAATGCAACCTTAATGGGAAACTGAGCAAAAGTACCAGTATTTTTGTAACATGTTAATAAGGAGATATTTATGCA-TTTGTTTTTCTTGTGTGATAATTA-TTAAAGA-A-T--A--TA-T-TAAGTTAATATTATGTTAAAAAGCTTGAAGATTCTGTATGGTTTGT-CTGCTGTACTTCATGAACAATTGTGCAATTTTTTTGTGTTCCA-TTTGCATTCTGCTTGATATTTCAGTATTATGAGAGATGTATTTTGCCTGTA--GAG--TGAATTTTCTCTTGCTGATCTTATG</Hsp_hseq>
+      <Hsp_midline>||||||||||   |||| ||||| |||||||| |||||||||||| ||||||||||| |||||| || |||||||||||||||||||||||||||||| ||||||||||| ||||  ||| ||||||||| ||||   ||| | | |  |  || | ||||||||||||||||| ||||||||||||||||||||||||| || ||||||||||| ||||| || ||  ||| ||||  |||||||  |||||||||||||||||||||||||||||||| |||||| ||   ||||||  |||  |||| ||||| ||||||||||||||</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>6</Hit_num>
+  <Hit_id>gi|512853109|ref|XM_002938875.2|</Hit_id>
+  <Hit_def>PREDICTED: Xenopus (Silurana) tropicalis RNA binding protein with multiple splicing 2 (rbpms2), transcript variant X2, mRNA</Hit_def>
+  <Hit_accession>XM_002938875</Hit_accession>
+  <Hit_len>1842</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>296.584</Hsp_bit-score>
+      <Hsp_score>160</Hsp_score>
+      <Hsp_evalue>1.61774e-076</Hsp_evalue>
+      <Hsp_query-from>201</Hsp_query-from>
+      <Hsp_query-to>518</Hsp_query-to>
+      <Hsp_hit-from>1489</Hsp_hit-from>
+      <Hsp_hit-to>1803</Hsp_hit-to>
+      <Hsp_query-frame>1</Hsp_query-frame>
+      <Hsp_hit-frame>1</Hsp_hit-frame>
+      <Hsp_identity>279</Hsp_identity>
+      <Hsp_positive>279</Hsp_positive>
+      <Hsp_gaps>29</Hsp_gaps>
+      <Hsp_align-len>331</Hsp_align-len>
+      <Hsp_qseq>CATTTTCATT---GAGTATTTGTGCTTGCCAAATGTAATGCAACCATAATGGGAAACAGAGCAATAGAACCAGTATTTTTGTAACATGTTAATAAGGATATATTTATGCAGTTTG--TTT-TTGTGTGATTATTAAAGAAAAATATTAAATCTATTATAAGTTAATATTATGTTTAAAAGCTTGAAGATTCTGTATGGTT-GTACTGCTGTACTTTATGAATAACTG--CAAGTTTT--GTGTTCCGTTTTGCATTCTGCTTGATATTTCAGTATTATGAAAGATGTCTTA--CCTGTACAGAGAATGAAATTTCTTTTGCTGATCTTATG</Hsp_qseq>
+      <Hsp_hseq>CATTTTCATTGGAGAGTTTTTGTTCTTGCCAAGTGTAATGCAACCTTAATGGGAAACTGAGCAAAAGTACCAGTATTTTTGTAACATGTTAATAAGGAGATATTTATGCA-TTTGTTTTTCTTGTGTGATAATTA-TTAAAGA-A-T--A--TA-T-TAAGTTAATATTATGTTAAAAAGCTTGAAGATTCTGTATGGTTTGT-CTGCTGTACTTCATGAACAATTGTGCAATTTTTTTGTGTTCCA-TTTGCATTCTGCTTGATATTTCAGTATTATGAGAGATGTATTTTGCCTGTA--GAG--TGAATTTTCTCTTGCTGATCTTATG</Hsp_hseq>
+      <Hsp_midline>||||||||||   |||| ||||| |||||||| |||||||||||| ||||||||||| |||||| || |||||||||||||||||||||||||||||| ||||||||||| ||||  ||| ||||||||| ||||   ||| | | |  |  || | ||||||||||||||||| ||||||||||||||||||||||||| || ||||||||||| ||||| || ||  ||| ||||  |||||||  |||||||||||||||||||||||||||||||| |||||| ||   ||||||  |||  |||| ||||| ||||||||||||||</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+<Hit>
+  <Hit_num>7</Hit_num>
+  <Hit_id>gi|77622519|emb|CT030275.1|</Hit_id>
+  <Hit_def>Xenopus tropicalis finished cDNA, clone TEgg071b02</Hit_def>
+  <Hit_accession>CT030275</Hit_accession>
+  <Hit_len>2302</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>296.584</Hsp_bit-score>
+      <Hsp_score>160</Hsp_score>
+      <Hsp_evalue>1.61774e-076</Hsp_evalue>
+      <Hsp_query-from>201</Hsp_query-from>
+      <Hsp_query-to>518</Hsp_query-to>
+      <Hsp_hit-from>1265</Hsp_hit-from>
+      <Hsp_hit-to>1579</Hsp_hit-to>
+      <Hsp_query-frame>1</Hsp_query-frame>
+      <Hsp_hit-frame>1</Hsp_hit-frame>
+      <Hsp_identity>279</Hsp_identity>
+      <Hsp_positive>279</Hsp_positive>
+      <Hsp_gaps>29</Hsp_gaps>
+      <Hsp_align-len>331</Hsp_align-len>
+      <Hsp_qseq>CATTTTCATT---GAGTATTTGTGCTTGCCAAATGTAATGCAACCATAATGGGAAACAGAGCAATAGAACCAGTATTTTTGTAACATGTTAATAAGGATATATTTATGCAGTTTG--TTT-TTGTGTGATTATTAAAGAAAAATATTAAATCTATTATAAGTTAATATTATGTTTAAAAGCTTGAAGATTCTGTATGGTT-GTACTGCTGTACTTTATGAATAACTG--CAAGTTTT--GTGTTCCGTTTTGCATTCTGCTTGATATTTCAGTATTATGAAAGATGTCTTA--CCTGTACAGAGAATGAAATTTCTTTTGCTGATCTTATG</Hsp_qseq>
+      <Hsp_hseq>CATTTTCATTGGAGAGTTTTTGTTCTTGCCAAGTGTAATGCAACCTTAATGGGAAACTGAGCAAAAGTACCAGTATTTTTGTAACATGTTAATAAGGAGATATTTATGCA-TTTGTTTTTCTTGTGTGATAATTA-TTAAAGA-A-T--A--TA-T-TAAGTTAATATTATGTTAAAAAGCTTGAAGATTCTGTATGGTTTGT-CTGCTGTACTTCATGAACAATTGTGCAATTTTTTTGTGTTCCA-TTTGCATTCTGCTTGATATTTCAGTATTATGAGAGATGTATTTTGCCTGTA--GAG--TGAATTTTCTCTTGCTGATCTTATG</Hsp_hseq>
+      <Hsp_midline>||||||||||   |||| ||||| |||||||| |||||||||||| ||||||||||| |||||| || |||||||||||||||||||||||||||||| ||||||||||| ||||  ||| ||||||||| ||||   ||| | | |  |  || | ||||||||||||||||| ||||||||||||||||||||||||| || ||||||||||| ||||| || ||  ||| ||||  |||||||  |||||||||||||||||||||||||||||||| |||||| ||   ||||||  |||  |||| ||||| ||||||||||||||</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+</Iteration_hits>
+  <Iteration_stat>
+    <Statistics>
+      <Statistics_db-num>23162903</Statistics_db-num>
+      <Statistics_db-len>59357918907</Statistics_db-len>
+      <Statistics_hsp-len>33</Statistics_hsp-len>
+      <Statistics_eff-space>30878797217916</Statistics_eff-space>
+      <Statistics_kappa>0.46</Statistics_kappa>
+      <Statistics_lambda>1.28</Statistics_lambda>
+      <Statistics_entropy>0.85</Statistics_entropy>
+    </Statistics>
+  </Iteration_stat>
+</Iteration>
+<Iteration>
+  <Iteration_iter-num>3</Iteration_iter-num>
+  <Iteration_query-ID>Query_3</Iteration_query-ID>
+  <Iteration_query-def>3</Iteration_query-def>
+  <Iteration_query-len>572</Iteration_query-len>
+<Iteration_hits>
+<Hit>
+  <Hit_num>1</Hit_num>
+  <Hit_id>gi|148234980|ref|NM_001094984.1|</Hit_id>
+  <Hit_def>Xenopus laevis NOTCH-regulated ankyrin repeat protein (nrarp), mRNA &gt;gi|54311204|gb|BC084778.1| Xenopus laevis Notch-regulated ankyrin repeat-containing protein, mRNA (cDNA clone MGC:82714 IMAGE:5154820), complete cds</Hit_def>
+  <Hit_accession>NM_001094984</Hit_accession>
+  <Hit_len>2595</Hit_len>
+  <Hit_hsps>
+    <Hsp>
+      <Hsp_num>1</Hsp_num>
+      <Hsp_bit-score>1053.71</Hsp_bit-score>
+      <Hsp_score>570</Hsp_score>
+      <Hsp_evalue>0</Hsp_evalue>
+      <Hsp_query-from>1</Hsp_query-from>
+      <Hsp_query-to>572</Hsp_query-to>
+      <Hsp_hit-from>1960</Hsp_hit-from>
+      <Hsp_hit-to>2531</Hsp_hit-to>
+      <Hsp_query-frame>1</Hsp_query-frame>
+      <Hsp_hit-frame>1</Hsp_hit-frame>
+      <Hsp_identity>571</Hsp_identity>
+      <Hsp_positive>571</Hsp_positive>
+      <Hsp_gaps>0</Hsp_gaps>
+      <Hsp_align-len>572</Hsp_align-len>
+      <Hsp_qseq>CACATTGTGTTAGTGGATCTGCCACAATTTAATGTCATAATATTTATGATGTGAATATTCTGTGTTCATCTCAAGGGTTTCAAGCCACTCCCACTTTTAAAGGGGAACTTCATTTTTTTTTATATATGAATTATTCCACTGTGAAGCATCTTCCTTGCAGGCACCCCTGCCATATGGTGTCTAGAGCCATTTCTGCCACCACTGGGCACCGGCAGGTGCCCCACCCACAGAGAGCGGCGTCTTGTCCGTTCTGGGTCCTGTCCCCATTTCATTCNGTTATTTCACTGAAATCCTTGGGATGAGCAGGACGCCGTGGCTGAAATCTACTCCAGAAAGGAGTTAATGTACGTTTGCTTGTATCCCAGCGCCAGACTTTATAAAAACAAACCATTTCTTTAATTATGTTAATTAAACTTATAGGCTTATATTGAAGCTGTGTTGTGATGAACTGGATGACGTCTGCACCATGTGACCTGGAGTGTATGGTGTATATATATATATATATATATATATATATTTATATATATATATATATATATTTATATATATATATCCTGTAGCCCATGAAATAA</Hsp_qseq>
+      <Hsp_hseq>CACATTGTGTTAGTGGATCTGCCACAATTTAATGTCATAATATTTATGATGTGAATATTCTGTGTTCATCTCAAGGGTTTCAAGCCACTCCCACTTTTAAAGGGGAACTTCATTTTTTTTTATATATGAATTATTCCACTGTGAAGCATCTTCCTTGCAGGCACCCCTGCCATATGGTGTCTAGAGCCATTTCTGCCACCACTGGGCACCGGCAGGTGCCCCACCCACAGAGAGCGGCGTCTTGTCCGTTCTGGGTCCTGTCCCCATTTCATTCGGTTATTTCACTGAAATCCTTGGGATGAGCAGGACGCCGTGGCTGAAATCTACTCCAGAAAGGAGTTAATGTACGTTTGCTTGTATCCCAGCGCCAGACTTTATAAAAACAAACCATTTCTTTAATTATGTTAATTAAACTTATAGGCTTATATTGAAGCTGTGTTGTGATGAACTGGATGACGTCTGCACCATGTGACCTGGAGTGTATGGTGTATATATATATATATATATATATATATATTTATATATATATATATATATATTTATATATATATATCCTGTAGCCCATGAAATAA</Hsp_hseq>
+      <Hsp_midline>|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||</Hsp_midline>
+    </Hsp>
+  </Hit_hsps>
+</Hit>
+</Iteration_hits>
+  <Iteration_stat>
+    <Statistics>
+      <Statistics_db-num>23162903</Statistics_db-num>
+      <Statistics_db-len>59357918907</Statistics_db-len>
+      <Statistics_hsp-len>33</Statistics_hsp-len>
+      <Statistics_eff-space>31581919735212</Statistics_eff-space>
+      <Statistics_kappa>0.46</Statistics_kappa>
+      <Statistics_lambda>1.28</Statistics_lambda>
+      <Statistics_entropy>0.85</Statistics_entropy>
+    </Statistics>
+  </Iteration_stat>
+</Iteration>
+</BlastOutput_iterations>
+</BlastOutput>
+

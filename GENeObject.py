@@ -1,4 +1,6 @@
 import time
+import __future__
+import pickle
 from Bio.Seq import Seq
 from Bio.Blast import NCBIWWW
 from Bio.Blast import NCBIXML
@@ -54,10 +56,10 @@ class GENe(object):
 		'''Create an excel document to write each hit into. Create headers.'''
 		self.newBook = Workbook()
 		self.sheet = self.newBook.add_sheet('Sheet One')
-		self.sheet.write(0,0,'Sequence')
-		self.sheet.write(0,2,'First Hit')
-		self.sheet.write(0,7,'Second Hit')
-		self.sheet.write(0,12,'Third Hit')
+		self.sheet.write(1,0,'Sequence')
+		self.sheet.write(0,3,'First Hit')
+		self.sheet.write(0,9,'Second Hit')
+		self.sheet.write(0,15,'Third Hit')
 
 		x = 0
 		for y in range(3):
@@ -65,10 +67,11 @@ class GENe(object):
 			self.sheet.write(1,x + 2,'e-value')
 			self.sheet.write(1,x + 3,'Acession')
 			self.sheet.write(1,x + 4,'Score')
-			x += 5
+			self.sheet.write(1,x + 5,'Short Gene Name (May be incorrect)')
+			x += 6
 
-		self.sheet.write(1,18,'Load Time')
-		self.sheet.write(1,19,'Time of Day')
+		self.sheet.write(1,20,'Load Time')
+		self.sheet.write(1,21,'Time of Day')
 
 
 
@@ -115,6 +118,26 @@ class GENe(object):
 		returnString = string[index:]
 		return returnString
 
+	def findShortName(self,string):
+		'''Given the standard string returned by the .title() method of the descriptions class from each blast record class, this function will attempt to find the shortened name of the gene in the name.  It will not always be succesful. 
+		The current logic is that most shortened names exist within parantheses, and do not contain spaces. This is open to improvement.'''
+		record = False
+		returnString = ''
+		for char in string:
+			if char == ')':
+				record = False
+				if ' ' in returnString or 'ilurana' in returnString:
+					returnString = ''
+					continue
+				else:
+					break
+			if record == True:
+				returnString = returnString + char
+			if char == '(':
+				record = True
+
+		return returnString
+
 
 
 	def writeData(self,row,column,description):
@@ -122,7 +145,8 @@ class GENe(object):
 		self.sheet.write(row,column + 1, self.cleanTitle(description.title))
 		self.sheet.write(row,column + 2, description.e)
 		self.sheet.write(row,column + 3, self.findAcession(description.title))
-		self.sheet.write(row,column + 4, description.score)
+		self.sheet.write(row,column + 4, description.bits/description.score)
+		self.sheet.write(row,column + 5, self.findShortName(description.title))
 
 
 
@@ -130,16 +154,16 @@ class GENe(object):
 		'''Stop the timer, print it out and write it to the excel sheet in the appropriate row.'''
 		timeTwo = time.time()
 		print 'Query Time: ', round(timeTwo - timeOne,1)
-		self.sheet.write(row,18, round(timeTwo - timeOne,1))
+		self.sheet.write(row,20, round(timeTwo - timeOne,1))
 
 		#Include time of day so analysis of when the best and worst times to use the server can be done.
-		self.sheet.write(row,19, time.ctime())
+		self.sheet.write(row,21, time.ctime())
 
 
 
 	def queryLocal(self,sequences):
 
-		'''sequenceFile = open("Sequences.fasta", "w")
+		sequenceFile = open("Sequences.fasta", "w")
 
 		#Split up into multiple files, instead of just one that will make the stop time function make sense here. In order to do that, split up the 'sequences' python list, and when you do so, name each queried segment 'sequences' so 
 		that the sequences can be easily written into the excel file in the for loop below.
@@ -162,20 +186,20 @@ class GENe(object):
 		xmlFile = open('sequences.xml')
 
 		blastRecords = NCBIXML.parse(xmlFile)
-
-		#A few lines of code need to be added in order to make the left most column of the excel sheet the sequences
+		#for testing: blastRecords = NCBIXML.parse(open('Sequences.xml'))
 
 		#Row starts at 2 because rows 0 and 1 are filled by the header
 		row = 2
 		for blastRecord in blastRecords:
 			self.filterNames(blastRecord, row)
 			self.sheet.write(row,0,sequences[row-2])
+			print '\n\n\n'
 			row += 1
 		
 		self.stopTime(row,timeOne)
-		self.save()'''
+		self.save()
 
-		pass
+		
 		
 
 
@@ -205,7 +229,9 @@ class GENe(object):
 					serverWasDown = True
 					time.sleep(60)
 
+			#for testing: blastRecord = pickle.load(open('recordDump.txt', 'rb'))
 			blastRecord = NCBIXML.read(resultHandle)
+			#for testing: pickle.dump(blastRecord, open('recordDump.txt', 'wb'))
 
 			print "\n\n\n"
 
@@ -224,33 +250,39 @@ class GENe(object):
 		second = True
 		count = 0
 		column = 0  
+		index = 0
 		for description in blastRecord.descriptions:
 
 			if "laevis" in description.title.lower() and first:
 
-				print "Title: ", self.cleanTitle(description.title), "\ne-value: ", description.e , "Acession: ", self.findAcession(description.title), "  Score: ", description.score, " Number of Alignments: ", description.num_alignments, "\n"
+				print "Title: ", self.cleanTitle(description.title), "\ne-value: ", description.e , "Acession: ", self.findAcession(description.title), "  Score: ", description.score, " Number of Alignments: ", description.num_alignments
+				print 'Short Name: ', self.findShortName(description.title), '\n'
 				self.writeData(row,column,description)
-				column += 5
+				column += 6
 				first = False
 				count += 1
 
 			if "tropicalis" in description.title.lower() and second:
 
-				print "Title: ", self.cleanTitle(description.title), "\ne-value: ", description.e , "Acession: ", self.findAcession(description.title), "  Score: ", description.score, " Number of Alignments: ", description.num_alignments, "\n"
+				print "Title: ", self.cleanTitle(description.title), "\ne-value: ", description.e , "Acession: ", self.findAcession(description.title), "  Score: ", description.score, " Number of Alignments: ", description.num_alignments
 				self.writeData(row,column,description)
-				column += 5
+				print 'Short Name: ', self.findShortName(description.title), '\n'
+				column += 6
 				second = False
 				count += 1
 
 			if "laevis" not in description.title.lower() and "tropicalis" not in description.title.lower():
 
-				print "Title: ", self.cleanTitle(description.title), "\ne-value: ", description.e , "Acession: ", self.findAcession(description.title), "  Score: ", description.score, " Number of Alignments: ", description.num_alignments, "\n"
+				print "Title: ", self.cleanTitle(description.title), "\ne-value: ", description.e , "Acession: ", self.findAcession(description.title), "  Score: ", description.score, " Number of Alignments: ", description.num_alignments
 				self.writeData(row,column,description)
-				column += 5
+				print 'Short Name: ', self.findShortName(description.title), '\n'
+				column += 6
 				count += 1
 
 			if count == 3:
 				break
+
+			index += 1
 
 
 
@@ -259,7 +291,7 @@ class GENe(object):
 if __name__ == "__main__":
 	newCatalog = GENe()
 	sequences = newCatalog.readBook()
-	newCatalog.queryServer(sequences)
+	newCatalog.queryLocal(sequences)
 
 
 
