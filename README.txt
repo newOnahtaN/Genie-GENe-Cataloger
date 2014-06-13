@@ -47,5 +47,11 @@ Update 3:  Here I will document a portion of correspondence between myself and t
 
 As was stated in this correspondence, the program works well, but I am having difficulty speeding it up. Almost two days went into setting up the NCBI databases locally to run a local version of the BLAST alogrithm, but in the end all of the effort seemed to be wasted because it really didn't speed up the process very much at all.
 
+Version Two
+-----------
+This version implements 3) above and is object oriented.
+
+Update 1: After yesterday's frustration came a lot of progress for today.  Among this list of improvements:  rearranged GENe.py to be object oriented, created the beginning of the GUI file, enabled capability for both local and server queries instead of a choice between the two, is able to find the short gene names of ~50% of the sequences. I am satisfied with today's accomplishments as the program now is much more robust and is nearing completion.
+
 
 

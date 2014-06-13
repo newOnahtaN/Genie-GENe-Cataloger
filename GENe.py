@@ -166,7 +166,7 @@ class GENe(object):
 		sequenceFile = open("Sequences.fasta", "w")
 
 		#Split up into multiple files, instead of just one that will make the stop time function make sense here. In order to do that, split up the 'sequences' python list, and when you do so, name each queried segment 'sequences' so 
-		that the sequences can be easily written into the excel file in the for loop below.
+		#that the sequences can be easily written into the excel file in the for loop below.
 
 		for sequence in sequences:
 			sequenceFile.write('>')
@@ -291,7 +291,7 @@ class GENe(object):
 if __name__ == "__main__":
 	newCatalog = GENe()
 	sequences = newCatalog.readBook()
-	newCatalog.queryLocal(sequences)
+	newCatalog.queryServer(sequences)
 
 
 
