@@ -58,6 +58,10 @@ def writeData(row,column):
 fileToOpen = 'C:\Users\Nate\Desktop\GENe\SequencesVerySmall.xlsx'
 saveAs = 'GENe Return Very Small.xls'
 
+#The database that the user would like to use according to this webpage: http://blast.ncbi.nlm.nih.gov/Blast.cgi?CMD=Web&PAGE_TYPE=BlastDocs&DOC_TYPE=ProgSelectionGuide#db
+#Use 'nr' as default
+database = 'nr'
+
 #make sure column actually has sequences
 col = 0
 
@@ -109,7 +113,7 @@ for sequence in sequences:
 
 		try:
 			#The function below is where all of the time is consumed. 
-			resultHandle = NCBIWWW.qblast("blastn","nr", sequence)
+			resultHandle = NCBIWWW.qblast("blastn",database, sequence)
 			if serverWasDown:
 				print "Server is up and running again."
 			break
