@@ -53,5 +53,8 @@ This version implements 3) above and is object oriented.
 
 Update 1: After yesterday's frustration came a lot of progress for today.  Among this list of improvements:  rearranged GENe.py to be object oriented, created the beginning of the GUI file, enabled capability for both local and server queries instead of a choice between the two, is able to find the short gene names of ~50% of the sequences. I am satisfied with today's accomplishments as the program now is much more robust and is nearing completion.
 
+Update 2: The GUI now accepts an open file and a save file, and can run the program using that information.  At this point, the program essentially works to satisfaction, but needs to be tidied up quite a bit. Because of unexpected circumstances, I will need to be finishing this project early, and because of this, most of the features mentioned in point 4 of the outline will go unimplemented as well as the load bar, which upon implementation of the local blast is not feasible anyway. What will be implemented is the e-value cap, and though there will be no way for the user to change the sorting algorithm for the blast hits, they will have the option to choose between Dr. Saha's algorithm and simply returning the top three hits. That portion of the code has also been left wide open for other sorting algorithms to potentially be developed in the future. It has also been revealed that the local Blast queries take a considerably shorter period of time than previously expected. The next update will include more implementation on the GUI side of things, and hopefully the beginnings of an actual userfriendly README, rather than this progress log.
+
+
 
 
