@@ -1,5 +1,6 @@
 GENe BLAST Automation and Gene Cataloger - June 2014
 Nathan Owen, ncowen@email.wm.edu
+Github and Source Files - https://github.com/newOnahtaN/Genie-GENe-Cataloger
 ========================================
 
 This program was originally created for use by the Biology Department of the College of William and Mary. The GENe program was developed knowing the difficulty and tediousness of having to Blast many thousands of sequences and then having to sort through the hits of these Blasts by hand. The program confronts that challenge and is fully capable of handling as many sequences as necessary. GENe serves as a middleman between the user and NCBI's Blast servers or NCBI's local Blast tool, BLAST+, and accomplishes both of these tasks with the help of the opensource Biopython module. This program works first and foremost as a recipient of excel files that contain a list of sequences that need to be BLASTed. Users may choose to Blast these sequences either locally or on NCBI's servers one by one, but both options have drawbacks that will be discussed in more detail in this README.  
