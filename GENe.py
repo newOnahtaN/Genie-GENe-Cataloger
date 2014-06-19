@@ -118,7 +118,6 @@ class GENe(Thread):
 	def readBook(self):
 		'''Reads the provided excel workbook, identifies sequences and loads them into a list to be used by a query function.'''
 		#make sure column actually has sequences
-
 		try:
 			workBook = open_workbook(self.fileToOpen)
 		except:
@@ -194,7 +193,7 @@ class GENe(Thread):
 		wx.Yield()
 
 		stdout, stderr = blastCommandLine()
-		xmlFile = open('localblastresults'.xml)
+		xmlFile = open('localblastresults.xml')
 		#xmlFile = open('testxml.xml')
 
 		blastRecords = NCBIXML.parse(xmlFile)
@@ -205,7 +204,9 @@ class GENe(Thread):
 		for blastRecord in blastRecords:
 			self.filterNames(blastRecord, row)
 			self.sheet.write(row,0,self.sequences[row-2])
-			self.save()
+			if row % 500 == 0:
+				self.sheet.flush_row_data()
+				self.save()
 			print '\n\n\n'
 			wx.Yield()
 			row += 1
@@ -227,7 +228,6 @@ class GENe(Thread):
 		for sequence in self.sequences:
 			self.sheet.write(row,0,sequence)
 
-			print "Working...."
 			timeOne = time.time()
 
 			serverWasDown = False
@@ -340,7 +340,7 @@ class GENe(Thread):
 
 		#Update the GUI's loadbar if this program is being accessed by a GUI
 		try:
-			self.GUI.progressUpdate(row-1)
+			self.GUI.progressUpdate(row + 1)
 			wx.Yield()
 		except:
 			pass

@@ -11,12 +11,17 @@ class GENeGUI(wx.Frame):
 		self.Center()
 		self.panel = wx.Panel(self)
 
+		#Check to see if there are other instances of this same program. If so, close out.
+		self.name = "GENeGUI"
+		self.instance = wx.SingleInstanceChecker(self.name)
+		if self.instance.IsAnotherRunning():
+			wx.MessageBox("Another instance is running already.", "Only one GENe instance at a time.")
+			time.sleep(5)
+			sys.exit()
 
 		#IO Info
 		self.openFileName = ''
 		self.saveFileName = ''
-
-
 
 
 		#Static Texts
@@ -37,7 +42,7 @@ class GENeGUI(wx.Frame):
 
 
 		#Buttons
-		catalogButton = wx.Button(self.panel, label = "Run Cataloger", pos = (415,217), size = (136, 50))
+		catalogButton = wx.Button(self.panel, label = "Run GENe", pos = (415,217), size = (136, 50))
 		openFileButton = wx.Button(self.panel, label = "Open Excel File", pos = (10,10), size = (100, 30))
 		saveFileButton = wx.Button(self.panel, label = "Choose Save Destination", pos = (10,50), size = (140,30))
 		helpButton = wx.Button(self.panel, label = "Help", pos = (550,217), size = (40, 50))
@@ -157,7 +162,7 @@ class GENeGUI(wx.Frame):
 		if progress == -1:
 			self.progressBar.Pulse()
 
-		elif progress == self.newCatalog.numberOfQueries:
+		elif progress >= self.newCatalog.numberOfQueries:
 			self.progressText.SetLabe("Complete!")
 		
 		else:
@@ -241,12 +246,16 @@ class GENeGUI(wx.Frame):
 
 
 	def closewindow(self, event):
-		self.newCatalog.exit()
-		self.Destroy()
+		try:
+			self.newCatalog.exit()
+			self.Destroy()
+		except:
+			self.Destroy()
+			self.newCatalog.exit()
 
 
 if __name__ == '__main__':
-	app = wx.App(True) #filename = 'GENe Error Log.txt')
+	app = wx.App(False) #filename = 'GENe Error Log.txt')
 	frame = GENeGUI(parent=None, id=-1)
 	frame.Show()
 	app.MainLoop()
