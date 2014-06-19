@@ -87,7 +87,7 @@ class GENeGUI(wx.Frame):
 
 
 		#Text Entry
-		self.dbTextBox = wx.TextCtrl (self.panel, -1, "nt", size = (30, -1), pos = (180, 178))
+		self.dbTextBox = wx.TextCtrl (self.panel, -1, 'nt', size = (30, -1), pos = (180, 178))
 		self.localDatabase = 'nt'
 
 		self.evalTextBox = wx.TextCtrl(self.panel, -1, '3', size = (30,-1), pos = (180, 140))
@@ -162,8 +162,8 @@ class GENeGUI(wx.Frame):
 		if progress == -1:
 			self.progressBar.Pulse()
 
-		elif progress >= self.newCatalog.numberOfQueries:
-			self.progressText.SetLabe("Complete!")
+		elif progress == -2:
+			self.progressText.SetLabel("Complete!")
 		
 		else:
 			self.progressBar.SetValue(progress)

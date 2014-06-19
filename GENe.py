@@ -106,7 +106,7 @@ class GENe(Thread):
 			self.sheet.write(1,x + 1,'Title')
 			self.sheet.write(1,x + 2,'e-value')
 			self.sheet.write(1,x + 3,'Acession')
-			self.sheet.write(1,x + 4,'Score')
+			self.sheet.write(1,x + 4,'Number of Alignments')
 			self.sheet.write(1,x + 5,'Short Gene Name (May be incorrect)')
 			x += 6
 
@@ -215,6 +215,13 @@ class GENe(Thread):
 		self.save()
 		self.running = False
 
+		#Update the GUI's loadbar to complete if this program is being accessed by a GUI
+		try:
+			self.GUI.progressUpdate(-2)
+			wx.Yield()
+		except:
+			pass
+
 
 	def queryServer(self):
 		'''Using each sequence gathered from the intial excel sheet, query each one by one to the NCBI Blast server. This method is very slow, but does not require that the user install BLAST+ or setup any
@@ -229,6 +236,8 @@ class GENe(Thread):
 			self.sheet.write(row,0,sequence)
 
 			timeOne = time.time()
+
+			print 'Working...'
 
 			serverWasDown = False
 			while True: 
@@ -259,6 +268,13 @@ class GENe(Thread):
 			row += 1
 
 		self.running = False
+		
+		#Update the GUI's loadbar to complete if this program is being accessed by a GUI
+		try:
+			self.GUI.progressUpdate(-2)
+			wx.Yield()
+		except:
+			pass
 
 
 
@@ -340,7 +356,7 @@ class GENe(Thread):
 
 		#Update the GUI's loadbar if this program is being accessed by a GUI
 		try:
-			self.GUI.progressUpdate(row + 1)
+			self.GUI.progressUpdate(row - 1)
 			wx.Yield()
 		except:
 			pass
@@ -420,7 +436,7 @@ class GENe(Thread):
 		self.sheet.write(row,column + 1, self.cleanTitle(description.title))
 		self.sheet.write(row,column + 2, description.e)
 		self.sheet.write(row,column + 3, self.findAcession(description.title))
-		self.sheet.write(row,column + 4, description.bits/description.score)
+		self.sheet.write(row,column + 4, description.num_alignments)
 		self.sheet.write(row,column + 5, self.findShortName(description.title))
 
 
