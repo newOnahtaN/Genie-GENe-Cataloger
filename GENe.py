@@ -1,14 +1,14 @@
+import wx
 import sys
 import time
 import __future__
-import pickle
-from Bio.Seq import Seq
 from Bio.Blast import NCBIWWW
 from Bio.Blast import NCBIXML
 from Bio.Blast.Applications import *
 from Bio import SeqIO
 from xlrd import open_workbook
 from xlwt import Workbook
+from threading import Thread
 
 #GENe RNA Cataloger
 #Nathan Owen, ncowen@email.wm.edu, 757-752-4220
@@ -17,21 +17,25 @@ from xlwt import Workbook
 
 #-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-class GENe(object):
+class GENe(Thread):
 
 
-	def __init__(self):
+	def __init__(self, GUIWindow = wx.Window):
 		'''Instructions for use of this program: Most information about the purpose of this program can be found in it's readme.  If one wishes to use this program without the provided GUI, 
-		then they must call three instructions from this class, an example of which is at the bottom of this program.  Firstly, create an instance of the GENe class, then call the readBook method on it
-		(provided that it has the correct fileToOpen and saveAs instance variables), which returns a list of sequences. After that, call either localQuery or serverQuery on the class instance with 
-		the list of sequences passed in as a parameter.  The program will then run the according BLAST search and write into the appropriate Excel file.'''
-
+		then they must call three instructions from this class, an example of which is at the bottom of this program.  Firstly, create an instance of the GENe class (wxPython must be installed), 
+		then call the readBook method on it (provided that it has the correct fileToOpen and saveAs instance variables). After that, call either localQuery or serverQuery on the class instance.  
+		The program will then run the according BLAST search and write into the appropriate Excel file.'''
 
 		#The excel file that this program saves to, in addition to a backup excel saved in this program's directory.
-		self.saveAs = 'GENe Return.xls'
+		self.saveAs = 'GENe Results.xls'
 
 		#The excel file that this program reads from to gather sequences.
-		self.fileToOpen = 'JustSequences.xlsx'#"SequencesVerySmall.xlsx"     
+		self.fileToOpen = 'SequencesVerySmall.xlsx' 
+
+		#The variable to be used by the .run() method when using the GUI that determines whether a to perform a Local or Server query. Default is server because it requires no set up.
+		#Must be set to either 'queryServer' or 'queryLocal'. Unles you are using threads, this variable does not to be set correctly if you are going to directly call either the
+		#queryServer or queryLocal methods.
+		self.queryType = 'queryServer'
 
 		#The database that the user would like to use according to this webpage: http://blast.ncbi.nlm.nih.gov/Blast.cgi?CMD=Web&PAGE_TYPE=BlastDocs&DOC_TYPE=ProgSelectionGuide#db
 		#Use 'nr' as default because that is what Saha's algorithm should use
@@ -41,27 +45,51 @@ class GENe(object):
 		#Use 'nt' as default because that is what Saha's algorithm should use
 		self.localDatabase = 'nt'
 
-		#The search type that the user would like to use. Available choices are blastn, blastp, blastx, tblastn, tblastx. This variable works for both Local and Server Blasts.
+		#The type of Blast search that the user would like to use. Available choices are blastn, blastp, blastx, tblastn, tblastx. This variable works for both Local and Server Blasts.
 		self.searchType = 'blastn'
 
 		#The column in the excel file provided just above that contains the sequences.  Remember to remind the user that the leftmost column starts with 0, not 1.
 		self.seqCol = 0
 
 		#The e-value cap/limit. Only applies to local blast.
-		self.eValCap = 1
+		self.eValCap = 3
 
 		#This Boolean decides whether to sort each hit by Dr. Saha's algorithm or to just return the top three results.
-		self.topThree = False
+		self.xenopusAlgo = True
 		
 		#Reference variables for Python Excel to create a new workbook.
 		self.newBook = None
 		self.sheet = None
 
-		#Total number of queries. This variable isn't set until the readBook function is called.
+		#The list of sequences to be queried.  This variable is filled by the .readBook() method and must be called before anything can be queried.
+		self.sequences = None
+
+		#Total number of queries. This variable isn't set until the readBook method is called.
 		self.numberOfQueries = None
+
+		#An instance variable for use in the GUI - lets the GUI know if an instance of this program is already running.
+		self.running = False
+
+		#Sets up this class as a thread so that the GUI can update itself while this program is running.  self.GUI is what gets updated.
+		Thread.__init__(self)
+		self.GUI = GUIWindow
+
 
 
 		self.openBook()
+
+
+	def run(self):
+		"""To be used with the GUI so that it may run this program in a seperate thread using the threading module. Accepts either the string 'queryLocal' or 'queryServer' 
+		as well as a list of sequences.  Middleman to the queryLocal and queryServer methods."""
+		if self.queryType == 'queryLocal':
+			self.queryLocal()
+
+		elif self.queryType == 'queryServer':
+			self.queryServer()
+
+		else:
+			print "Please set either 'queryLocal' or 'queryServer' for self.queryType."
 
 
 	def openBook(self):
@@ -93,52 +121,40 @@ class GENe(object):
 
 		try:
 			workBook = open_workbook(self.fileToOpen)
-		except IOError:
-			raise IOError("File provided was not an Excel file. Please provide an excel file to be read from.")
+		except:
+			raise IOError("File provided was not an Excel file. Please provide an excel file to be read from. If the file was a CSV file or some other variant, open it with Excel and save it as an Excel Worksheet.")
 
 
 		sequences = []
-		for sheet in workBook.sheets():
-			for row in range(sheet.nrows):
-				sequences.append(sheet.cell(row,self.seqCol).value)
+		try:
+			for sheet in workBook.sheets():
+				for row in range(sheet.nrows):
+					sequences.append(sheet.cell(row,self.seqCol).value)
+		except IndexError:
+			print 'Please choose a column that contains sequences. The leftmost column is zero.'
 
 
 		if sequences == []:
 			raise IOError('No sequences were loaded: The column was empty')
 
+
+		self.running = True
 		self.numberOfQueries = len(sequences)
+		self.sequences = sequences
 
-		return sequences
 
-
-	def queryLocal(self,sequencesList):
+	def queryLocal(self):
 		'''Given a python list of sequences, arbitrarily large, this method will call on BLAST+, a locally defined software program that emulates NCBI's BLAST alogrithm on a computer. This is a very consumptuous process, and 
 		will more than likely lock up a computer, albeit a very fast option for query in comparison to the queryServer method. In order to use this option, the user must download BLAST+ from NCBI and the correct databases they
 		wish to BLAST over.  The default for this program is the 'nt' database.'''
 
-		'''#This bit of code splits up the list of sequences into portions of 50 as to not overload the computer when querying locally.  It also aids in displaying progress, rather than doing all at once.
-		that = sequencesList[0:50]
-		print that
-		listOfSequenceLists = []
-		start = 0
-		end = 0
-		while True:
-			try:
-				listOfSequenceLists.append(sequencesList[start:end])
-				start += 50
-				end += 50
-			except:
-				listOfSequenceLists.append(sequencesList[start:])
-				break
-
-		print listOfSequenceLists
-		for sequences in sequencesList:'''
+		if self.sequences == None:
+			raise IOError('You must first call the .readbook() method on the GENe instance before using this method so that sequences can be collected.')
 
 
-
-		'''sequenceFile = open("Sequences.fasta", "w")
+		sequenceFile = open("Sequences.fasta", "w")
 		num = 0
-		for sequence in sequences:
+		for sequence in self.sequences:
 			sequenceFile.write('>')
 			sequenceFile.write(str(num))
 			sequenceFile.write('\n')
@@ -149,6 +165,14 @@ class GENe(object):
 
 		timeOne = time.time()
 		
+		#Make GUI loadbar pulse for a while because this next operation's progress can not be easily gauged. 
+		try:
+			self.GUI.progressUpdate(-1)
+			wx.Yield()
+		except:
+			pass
+
+
 		#blastn, blastp, blastx, tblastn, tblastx
 
 		if self.searchType == 'blastn':
@@ -167,10 +191,11 @@ class GENe(object):
 			blastCommandLine = NcbitblastxCommandline(cmd= self.searchType, query= "Sequences.fasta", db= self.localDatabase , evalue=self.eValCap, outfmt=5, out="localblastresults.xml")
 
 		print blastCommandLine
-		sys.stdout.flush()
+		wx.Yield()
 
-		stdout, stderr = blastCommandLine()'''
-		xmlFile = open('testxml.xml')
+		stdout, stderr = blastCommandLine()
+		xmlFile = open('localblastresults'.xml)
+		#xmlFile = open('testxml.xml')
 
 		blastRecords = NCBIXML.parse(xmlFile)
 
@@ -179,21 +204,27 @@ class GENe(object):
 		row = 2
 		for blastRecord in blastRecords:
 			self.filterNames(blastRecord, row)
-			self.sheet.write(row,0,sequencesList[row-2])
+			self.sheet.write(row,0,self.sequences[row-2])
 			self.save()
 			print '\n\n\n'
-			sys.stdout.flush()
+			wx.Yield()
 			row += 1
 		
 		self.stopTime(row,timeOne)
 		self.save()
+		self.running = False
 
-	def queryServer(self, sequences):
+
+	def queryServer(self):
 		'''Using each sequence gathered from the intial excel sheet, query each one by one to the NCBI Blast server. This method is very slow, but does not require that the user install BLAST+ or setup any
 		corresponding databases locally on their computer.'''
+
+		if self.sequences == None:
+			raise IOError('You must first call the .readbook() method on the GENe instance before using this method so that sequences can be collected.')
+
 		#Row starts at 2 because rows 0 and 1 are filled by the header
 		row = 2
-		for sequence in sequences:
+		for sequence in self.sequences:
 			self.sheet.write(row,0,sequence)
 
 			print "Working...."
@@ -207,26 +238,27 @@ class GENe(object):
 					resultHandle = NCBIWWW.qblast(self.searchType, self.serverDatabase, sequence)
 					if serverWasDown:
 						print "Server is up and running again."
-						sys.stdout.flush()
+						wx.Yield()
 					break
 
 				except:
 					print "Server connection lost, waiting 60 seconds to try agiain.  Please make sure the computer has a working network connection."
-					sys.stdout.flush()
+					wx.Yield()
 					serverWasDown = True
 					time.sleep(60)
 
-			#for testing: blastRecord = pickle.load(open('recordDump.txt', 'rb'))
 			blastRecord = NCBIXML.read(resultHandle)
-			#for testing: pickle.dump(blastRecord, open('recordDump.txt', 'wb'))
 
 			print "\n\n\n"
-			sys.stdout.flush()
+
+			wx.Yield()
 
 			self.filterNames(blastRecord,row)
 			self.stopTime(row,timeOne)
 			self.save()
 			row += 1
+
+		self.running = False
 
 
 
@@ -235,7 +267,7 @@ class GENe(object):
 		if the decision making process for what should be recorded by this cataloger changes, this is the method that should be altered.  As it is, it filters through the descriptions for each hit to see if they contain the
 		keywords 'laevis' or 'tropicalis'.  The user can also specify to ignore this alorithm and just return the top three results by setting self.topThree to True.'''
 
-		if self.topThree == False:
+		if self.xenopusAlgo == True:
 
 			first = True
 			second = True
@@ -245,7 +277,7 @@ class GENe(object):
 
 			for description in blastRecord.descriptions:
 
-				if "laevis" in description.title.lower() and first:
+				if "laevis" in description.title.lower() and first and float(description.e) < self.eValCap:
 
 					print "Title: ", self.cleanTitle(description.title), "\ne-value: ", description.e , "Acession: ", self.findAcession(description.title), "  Score: ", description.score, " Number of Alignments: ", description.num_alignments
 					print 'Short Name: ', self.findShortName(description.title), '\n'
@@ -255,7 +287,7 @@ class GENe(object):
 					first = False
 					count += 1
 
-				if "tropicalis" in description.title.lower() and second:
+				if "tropicalis" in description.title.lower() and second and float(description.e) < self.eValCap:
 
 					print "Title: ", self.cleanTitle(description.title), "\ne-value: ", description.e , "Acession: ", self.findAcession(description.title), "  Score: ", description.score, " Number of Alignments: ", description.num_alignments
 					print 'Short Name: ', self.findShortName(description.title), '\n'
@@ -265,7 +297,7 @@ class GENe(object):
 					second = False
 					count += 1
 
-				if "laevis" not in description.title.lower() and "tropicalis" not in description.title.lower():
+				if "laevis" not in description.title.lower() and "tropicalis" not in description.title.lower() and float(description.e) < self.eValCap:
 
 					print "Title: ", self.cleanTitle(description.title), "\ne-value: ", description.e , "Acession: ", self.findAcession(description.title), "  Score: ", description.score, " Number of Alignments: ", description.num_alignments
 					print 'Short Name: ', self.findShortName(description.title), '\n'
@@ -286,6 +318,7 @@ class GENe(object):
 			#Simply return top three results
 
 			count = 0
+			column = 0
 			print row-1, "of", self.numberOfQueries
 
 			for description in blastRecord.descriptions:
@@ -305,6 +338,14 @@ class GENe(object):
 				self.sheet.write(row,1,"No Results")
 
 
+		#Update the GUI's loadbar if this program is being accessed by a GUI
+		try:
+			self.GUI.progressUpdate(row-1)
+			wx.Yield()
+		except:
+			pass
+		
+
 
 	def save(self):
 		'''Save the Excel Sheet that is being written into.'''
@@ -314,7 +355,8 @@ class GENe(object):
 				self.newBook.save('Backup.xls')
 				break
 			except IOError:
-				cont = raw_input("Please make sure the Excel spreadsheet is closed so that the program may continue. Press any key to continue after you have done so.")
+				print "Please make sure the Excel spreadsheet is closed so that the program may continue. Will wait 10 seconds and try again."
+				time.sleep(10)
 
 
 
@@ -392,14 +434,17 @@ class GENe(object):
 		#Include time of day so analysis of when the best and worst times to use the server can be done.
 		self.sheet.write(row,21, time.ctime())
 
+	def exit(self):
+		sys.exit()
+
 
 
 #------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 if __name__ == "__main__":
 	newCatalog = GENe()
-	sequences = newCatalog.readBook()
-	newCatalog.queryLocal(sequences)
+	newCatalog.readBook()
+	newCatalog.queryServer()
 
 
 
