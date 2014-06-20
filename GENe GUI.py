@@ -1,4 +1,5 @@
 import wx
+import os
 import sys
 import webbrowser
 from GENe import *
@@ -29,10 +30,10 @@ class GENeGUI(wx.Frame):
 		self.saveFileText = wx.StaticText(self.panel, label = '', pos = (155, 57))
 		self.colScroll = wx.StaticText(self.panel, label = 'Column Containing Sequences', pos = (421, 5))
 		self.progressText = wx.StaticText(self.panel, label = "Waiting to run." , pos = (10, 225))
-		self.localDBText = wx.StaticText(self.panel, label = "Local Database:" , pos = (60, 180))
+		self.localDBText = wx.StaticText(self.panel, label = "Local Database:" , pos = (35, 180))
 		self.serverDBText = wx.StaticText(self.panel, label = "Server Database:" , pos = (290, 180))
 		self.searchText = wx.StaticText(self.panel, label = "BLAST Search Type:" , pos = (290, 143))
-		self.evalText = wx.StaticText(self.panel, label = "e-value maximum:" , pos = (60, 143))
+		self.evalText = wx.StaticText(self.panel, label = "e-value maximum:" , pos = (35, 143))
 
 
 
@@ -87,10 +88,10 @@ class GENeGUI(wx.Frame):
 
 
 		#Text Entry
-		self.dbTextBox = wx.TextCtrl (self.panel, -1, 'nt', size = (30, -1), pos = (180, 178))
+		self.dbTextBox = wx.TextCtrl (self.panel, -1, 'nt', size = (120, -1), pos = (150, 178))
 		self.localDatabase = 'nt'
 
-		self.evalTextBox = wx.TextCtrl(self.panel, -1, '3', size = (30,-1), pos = (180, 140))
+		self.evalTextBox = wx.TextCtrl(self.panel, -1, '3', size = (120,-1), pos = (150, 140))
 		self.eValCap = None
 
 
@@ -107,6 +108,13 @@ class GENeGUI(wx.Frame):
 		#Initialize GENe instance
 		self.newCatalog = GENe(self)
 
+	def errorPop(self, string, end = False):
+		'''Given a string that presumably contains an error message, this method will create a popup displaying that message'''
+		wx.MessageBox(string, "GENe Error or Update")
+
+		if end == True: 
+			self.closewindow(None)
+
 
 	def runCataloger(self,event):
 		"Main method. Passess in most of the GUI's instnace variables to GENe and runs GENe in a thread."
@@ -115,11 +123,24 @@ class GENeGUI(wx.Frame):
 		if self.newCatalog.running == False:
 
 			#Collect contents from text boxes and GUI choices.
-			self.localDatabase = self.dbTextBox.GetValue()
 			self.eValCap = float(self.evalTextBox.GetValue())
 			self.serverDatabase = self.dbChoice.GetStringSelection()
 			self.searchType = self.searchChoice.GetStringSelection()
 			self.seqCol = int(self.seqColumn.GetValue())
+
+
+			#Format the 'local database' variable for proper use in GENe (differs per operating system)
+			self.localDatabase = self.dbTextBox.GetValue()
+
+			### Double quotes for windows
+			if 'win' in sys.platform:
+				self.localDatabase = '"' + self.localDatabase + '"'
+
+			### Single quotes for UNIX (MacOS and Linux)
+			else:
+				self.localDatabase = "'" + self.localDatabase + "'"
+
+			print "Databases you chose: ", self.localDatabase
 
 
 			#Set instance variables in GENe
@@ -164,6 +185,10 @@ class GENeGUI(wx.Frame):
 
 		elif progress == -2:
 			self.progressText.SetLabel("Complete!")
+
+		elif progress == -3:
+			self.progressText.SetLabel("Terminated Early.")
+			self.progressBar.SetValue(0)
 		
 		else:
 			self.progressBar.SetValue(progress)
@@ -246,16 +271,24 @@ class GENeGUI(wx.Frame):
 
 
 	def closewindow(self, event):
-		try:
-			self.newCatalog.exit()
-			self.Destroy()
-		except:
-			self.Destroy()
-			self.newCatalog.exit()
+		sys.exit()
+		self.Destroy()
 
 
 if __name__ == '__main__':
-	app = wx.App(True, filename = 'GENe Error Log.txt')
+	homeFolder = os.path.expanduser('~')
+	GENefolder = homeFolder + '\GENe\\'
+	if not os.path.exists(GENefolder):
+		os.makedirs(GENefolder)
+
+	errorlog = GENefolder + 'GENe Error Log.txt'
+
+	try:
+		os.remove(errorlog)
+	except:
+		pass
+
+	app = wx.App(True, filename = errorlog)
 	frame = GENeGUI(parent=None, id=-1)
 	frame.Show()
 	app.MainLoop()

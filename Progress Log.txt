@@ -59,6 +59,13 @@ Update 2: The GUI now accepts an open file and a save file, and can run the prog
 
 Update 3: I couldn't be happier!  The program has a fully usable and polished GUI.  All the features that I had hoped that the program would have on a base level are present plus a few extra features.  The GUI is pleasant looking, and I managed to create it in a standalone python script that will allow for future developers (if there are any) to poke around in the main GENe python script without having to worry about the GUI getting in the way. I added the capability in this update for a help button that opens up the README.  At this stage, the program is all but complete.  The last steps are to turn the python scripts into an executable bundled with a sufficient README, which has not been written yet. Once those two tasks are completed, the project will have entered its third and final version for this summer.  
 
+Version Three
+-------------
+
+Update 1: At this point, GENe is complete.  I have presented the program to the biologists, and seemed to be very happy with the product, as am I.  There are more than a few things that need to be done, but at this point, I am comfortable calling these bugs, rather than portions of an uncompleted project.  These things that still need to be done are: Need to make better error messages (popups), Need to make it so this program writes to an unprotected directory, instead of its own directory so that it does not need administrative priveledges to run, remove the necessity to put a certain type of quote around the local database selection, make the README easier to read, and create an installer for the MacOS and make sure that everything works for that operating system. I will fix these bugs over the weekend, as I need to start packing to go home.
+
+Update 2: I couldn't wait - I had to get the bugs out of the way.  Besides making the program able to work on a Mac which I can't do right now anyway, I cleaned up all of those bugs and everything should be working just fine now.  I'm going to write my final blog post tonight for this project, and at this point, I think it is safe to say, this project is done.
+
 
 
 

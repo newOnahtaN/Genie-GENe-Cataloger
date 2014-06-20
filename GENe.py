@@ -1,3 +1,4 @@
+import os
 import wx
 import sys
 import time
@@ -27,10 +28,13 @@ class GENe(Thread):
 		The program will then run the according BLAST search and write into the appropriate Excel file.'''
 
 		#The excel file that this program saves to, in addition to a backup excel saved in this program's directory.
-		self.saveAs = 'GENe Results.xls'
+		self.saveAs = 'C:\Users\Nate\Desktop\Overnight Local.xls'
+
+		#The directory that all of the working files for this program saves to.
+		self.saveDirectory = self.saveDirectory()
 
 		#The excel file that this program reads from to gather sequences.
-		self.fileToOpen = 'SequencesVerySmall.xlsx' 
+		self.fileToOpen = 'SequencesSmall.xlsx' 
 
 		#The variable to be used by the .run() method when using the GUI that determines whether a to perform a Local or Server query. Default is server because it requires no set up.
 		#Must be set to either 'queryServer' or 'queryLocal'. Unles you are using threads, this variable does not to be set correctly if you are going to directly call either the
@@ -121,7 +125,9 @@ class GENe(Thread):
 		try:
 			workBook = open_workbook(self.fileToOpen)
 		except:
-			raise IOError("File provided was not an Excel file. Please provide an excel file to be read from. If the file was a CSV file or some other variant, open it with Excel and save it as an Excel Worksheet.")
+			self.guiError("Could not open file. Please provide an excel file to be read from. If the file was a CSV file or some other variant, open it with Excel and save it as an Excel Worksheet.")
+			raise IOError("Could not open file. Please provide an excel file to be read from. If the file was a CSV file or some other variant, open it with Excel and save it as an Excel Worksheet.")
+			return
 
 
 		sequences = []
@@ -129,12 +135,17 @@ class GENe(Thread):
 			for sheet in workBook.sheets():
 				for row in range(sheet.nrows):
 					sequences.append(sheet.cell(row,self.seqCol).value)
-		except IndexError:
+
+		except:
 			print 'Please choose a column that contains sequences. The leftmost column is zero.'
+			self.guiError('Please choose a column that contains sequences. The leftmost column is zero.')
+			return
 
 
 		if sequences == []:
+			self.guiError('No sequences were loaded: The column was empty')
 			raise IOError('No sequences were loaded: The column was empty')
+			return
 
 
 		self.running = True
@@ -151,7 +162,7 @@ class GENe(Thread):
 			raise IOError('You must first call the .readbook() method on the GENe instance before using this method so that sequences can be collected.')
 
 
-		sequenceFile = open("Sequences.fasta", "w")
+		sequenceFile = open(self.saveDirectory + "Sequences.fasta", "w")
 		num = 0
 		for sequence in self.sequences:
 			sequenceFile.write('>')
@@ -165,62 +176,79 @@ class GENe(Thread):
 		timeOne = time.time()
 		
 		#Make GUI loadbar pulse for a while because this next operation's progress can not be easily gauged. 
+		self.loadBarUpdate(-1)
+
+
 		try:
-			self.GUI.progressUpdate(-1)
-			wx.Yield()
+
+			#blastn, blastp, blastx, tblastn, tblastx
+			self.guiError("Reminder: You may want to check the Error Log if this is your first time running this kind of a local search. If the local blast fails for some reason, GENe will not show\
+			 it, it will just load forever. The error log will show if the local blast has failed.\n\n(This is not an error. If the\
+			 error log shows no details of an error, then everything is working properly.)")
+
+			if self.searchType == 'blastn':
+				blastCommandLine = NcbiblastnCommandline(cmd= self.searchType, query=self.saveDirectory + "Sequences.fasta", db= self.localDatabase , evalue=self.eValCap, outfmt=5, out=self.saveDirectory + "localblastresults.xml")
+
+			elif self.searchType == 'blastp':
+				blastCommandLine = NcbiblastpCommandline(cmd= self.searchType, query=self.saveDirectory + "Sequences.fasta", db= self.localDatabase , evalue=self.eValCap, outfmt=5, out=self.saveDirectory + "localblastresults.xml")
+
+			elif self.searchType == 'blastx':
+				blastCommandLine = NcbiblastxCommandline(cmd= self.searchType, query=self.saveDirectory + "Sequences.fasta", db= self.localDatabase , evalue=self.eValCap, outfmt=5, out=self.saveDirectory + "localblastresults.xml")
+
+			elif self.searchType == 'tblastn':
+				blastCommandLine = NcbitblastnCommandline(cmd= self.searchType, query=self.saveDirectory + "Sequences.fasta", db= self.localDatabase , evalue=self.eValCap, outfmt=5, out=self.saveDirectory + "localblastresults.xml")
+
+			elif self.searchType == 'tblastx':
+				blastCommandLine = NcbitblastxCommandline(cmd= self.searchType, query=self.saveDirectory + "Sequences.fasta", db= self.localDatabase , evalue=self.eValCap, outfmt=5, out=self.saveDirectory + "localblastresults.xml")
+
 		except:
-			pass
+
+			self.loadBarUpdate(-3)
+			self.guiError("Local Blast failed.")
+			return
 
 
-		#blastn, blastp, blastx, tblastn, tblastx
-
-		if self.searchType == 'blastn':
-			blastCommandLine = NcbiblastnCommandline(cmd= self.searchType, query= "Sequences.fasta", db= self.localDatabase , evalue=self.eValCap, outfmt=5, out="localblastresults.xml")
-
-		elif self.searchType == 'blastp':
-			blastCommandLine = NcbiblastpCommandline(cmd= self.searchType, query= "Sequences.fasta", db= self.localDatabase , evalue=self.eValCap, outfmt=5, out="localblastresults.xml")
-
-		elif self.searchType == 'blastx':
-			blastCommandLine = NcbiblastxCommandline(cmd= self.searchType, query= "Sequences.fasta", db= self.localDatabase , evalue=self.eValCap, outfmt=5, out="localblastresults.xml")
-
-		elif self.searchType == 'tblastn':
-			blastCommandLine = NcbitblastnCommandline(cmd= self.searchType, query= "Sequences.fasta", db= self.localDatabase , evalue=self.eValCap, outfmt=5, out="localblastresults.xml")
-
-		elif self.searchType == 'tblastx':
-			blastCommandLine = NcbitblastxCommandline(cmd= self.searchType, query= "Sequences.fasta", db= self.localDatabase , evalue=self.eValCap, outfmt=5, out="localblastresults.xml")
 
 		print blastCommandLine
-		wx.Yield()
+		
 
 		stdout, stderr = blastCommandLine()
-		xmlFile = open('localblastresults.xml')
-		#xmlFile = open('testxml.xml')
+		
 
+		xmlFile = open(self.saveDirectory + 'localblastresults.xml')
 		blastRecords = NCBIXML.parse(xmlFile)
+
+
+		#Blast records is a list of blast records.  Each blast record corresponds to one sequence, and holds all the hits for each.
+		#The following operations parse through those Blast Records.
 
 
 		#Row starts at 2 because rows 0 and 1 are filled by the header
 		row = 2
 		for blastRecord in blastRecords:
+
 			self.filterNames(blastRecord, row)
+
+			#Write the sequence itself to the excel sheet
 			self.sheet.write(row,0,self.sequences[row-2])
+
 			if row % 500 == 0:
 				self.sheet.flush_row_data()
 				self.save()
+
 			print '\n\n\n'
-			wx.Yield()
+			
+
 			row += 1
 		
+
 		self.stopTime(row,timeOne)
 		self.save()
 		self.running = False
 
-		#Update the GUI's loadbar to complete if this program is being accessed by a GUI
-		try:
-			self.GUI.progressUpdate(-2)
-			wx.Yield()
-		except:
-			pass
+		#Tell GUI loadbar that the program is done.
+		self.loadBarUpdate(-2)
+
 
 
 	def queryServer(self):
@@ -244,23 +272,30 @@ class GENe(Thread):
 
 				try:
 					#The function below is where all of the time is consumed. 
+
 					resultHandle = NCBIWWW.qblast(self.searchType, self.serverDatabase, sequence)
 					if serverWasDown:
 						print "Server is up and running again."
-						wx.Yield()
+						self.guiError("Server is up and running again.")
 					break
+
+				except ValueError:
+					print "The data provided could not be BLASTED. Please make sure the data that was provided was a column of sequences, that has no rows that are either empty or have anything other than sequences in them."
+					self.guiError("The data provided could not be BLASTED. Please make sure the data that was provided was a column of sequences, that has no rows that are either empty or have anything other than sequences in them.")
+					self.loadBarUpdate(-3)
+					return
 
 				except:
 					print "Server connection lost, waiting 60 seconds to try agiain.  Please make sure the computer has a working network connection."
-					wx.Yield()
+					self.guiError("Server connection lost, waiting 60 seconds to try agiain.  Please make sure the computer has a working network connection.")
+					
 					serverWasDown = True
 					time.sleep(60)
 
 			blastRecord = NCBIXML.read(resultHandle)
 
 			print "\n\n\n"
-
-			wx.Yield()
+			
 
 			self.filterNames(blastRecord,row)
 			self.stopTime(row,timeOne)
@@ -269,13 +304,8 @@ class GENe(Thread):
 
 		self.running = False
 		
-		#Update the GUI's loadbar to complete if this program is being accessed by a GUI
-		try:
-			self.GUI.progressUpdate(-2)
-			wx.Yield()
-		except:
-			pass
-
+		#Tell GUI loadbar that the program is done.
+		self.loadBarUpdate(-2)
 
 
 	def filterNames(self,blastRecord, row):
@@ -354,33 +384,36 @@ class GENe(Thread):
 				self.sheet.write(row,1,"No Results")
 
 
-		#Update the GUI's loadbar if this program is being accessed by a GUI
-		try:
-			self.GUI.progressUpdate(row - 1)
-			wx.Yield()
-		except:
-			pass
+		self.loadBarUpdate(row - 1)
 		
 
 
 	def save(self):
 		'''Save the Excel Sheet that is being written into.'''
+
 		while True:
+
 			try: 
 				self.newBook.save(self.saveAs)
-				self.newBook.save('Backup.xls')
+				self.newBook.save(self.saveDirectory + 'Backup.xls')
 				break
+
 			except IOError:
+
 				print "Please make sure the Excel spreadsheet is closed so that the program may continue. Will wait 10 seconds and try again."
+				self.guiError("Please make sure the Excel spreadsheet is closed so that the program may continue. Will wait 10 seconds and try again.")
 				time.sleep(10)
 
 
 
 	def findAcession(self,string):
 		'''Given the standard string returned by the .title() method of the descriptions class from each blast record class, this function locates the acession number found between the second set of | | bars.'''
+
 		barCount = 0
 		returnString = ""
+
 		for char in string:
+
 			if char == "|":
 				barCount += 1 
 				continue
@@ -395,10 +428,13 @@ class GENe(Thread):
 
 	def cleanTitle(self,string):
 		'''Given the standard string returned by the .title() method of the descriptions class from each blast record class, this function removes everything before the start of the actual title of the gene, indicated by the fourth | bar.'''
+
 		barCount = 0
 		returnString = ""
 		index = 0
+
 		for char in string:
+
 			if char == "|":
 				barCount += 1 
 			index += 1
@@ -412,18 +448,25 @@ class GENe(Thread):
 	def findShortName(self,string):
 		'''Given the standard string returned by the .title() method of the descriptions class from each blast record class, this function will attempt to find the shortened name of the gene in the name.  It will not always be succesful. 
 		The current logic is that most shortened names exist within parantheses, and do not contain spaces. This is open to improvement.'''
+
 		record = False
 		returnString = ''
+
 		for char in string:
+
 			if char == ')':
 				record = False
+
 				if ' ' in returnString or 'ilurana' in returnString:
 					returnString = ''
 					continue
+
 				else:
 					break
+
 			if record == True:
 				returnString = returnString + char
+
 			if char == '(':
 				record = True
 
@@ -433,6 +476,7 @@ class GENe(Thread):
 
 	def writeData(self,row,column,description):
 		'''Only to be used in a filter function, writes metadata from each BlastRecord instance into the excel sheet.'''
+
 		self.sheet.write(row,column + 1, self.cleanTitle(description.title))
 		self.sheet.write(row,column + 2, description.e)
 		self.sheet.write(row,column + 3, self.findAcession(description.title))
@@ -443,6 +487,7 @@ class GENe(Thread):
 
 	def stopTime(self,row,timeOne):
 		'''Stop the timer, print it out and write it to the excel sheet in the appropriate row.'''
+
 		timeTwo = time.time()
 		print 'Query Time: ', round(timeTwo - timeOne,1)
 		self.sheet.write(row,20, round(timeTwo - timeOne,1))
@@ -450,8 +495,45 @@ class GENe(Thread):
 		#Include time of day so analysis of when the best and worst times to use the server can be done.
 		self.sheet.write(row,21, time.ctime())
 
+
+	def saveDirectory(self):
+		'''This method identifies or creates a directory to save the working files for this program to.'''
+
+		homeFolder = os.path.expanduser('~')
+		GENefolder = homeFolder + '\GENe\\'
+		if not os.path.exists(GENefolder):
+			os.makedirs(GENefolder)
+
+		return GENefolder
+
+
 	def exit(self):
 		sys.exit()
+
+
+
+
+	#GUI Methods
+
+	def guiError(self, Errorstring):
+		"Pass an error message to the GUI if there is one."
+		try: 
+			self.GUI.errorPop(Errorstring)
+			
+		except:
+			pass
+
+	def loadBarUpdate(self, progress):
+		"Update the load bar of the GUI if there is one."
+		try:
+			self.GUI.progressUpdate(progress)
+			
+		except:
+			pass
+		
+
+
+
 
 
 
