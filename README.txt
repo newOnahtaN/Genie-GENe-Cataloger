@@ -35,6 +35,8 @@ Table of Contents
 1) Common Use and Basic Instructions
 ====================================
 
+Installation: Installation is as simple as downloading the installer and running it. GENe will install itself and you can then run the application directly.  If you are viewing this file from GitHub, you will need to download this entire repository and run GENe setup.exe installer.If you have trouble opening GENe after installing it on Windows, attempt to run it as an administrator. Once you have done so, you can delete the rest of the files present if you are not planning on developing further on the source code. 
+
 The first operations that are necessary for use of this program are found in the top left corner of the window. The 'Open Excel File' button has the user choose an excel workbook to read sequences out of.  It is possible that the user may choose a CSV file or variant that can be read by Excel and therefore has an Excel icon, but in order for GENe to read the file, it has to be saved as an Excel workbook. After the user selects an excel file to read from, the scroller to the right labeled 'Column Containing Sequences' should be adjusted so that the number showing is representative of the column in the excel spreadsheet that contains all of the sequences that are to be BLASTed.  It should be kept in mind that the leftmost column is considered 'Column 0' in this arrangement.
 
 The user must then choose a directory that they wish to save the results to.  It is imperative that this file end with .xls - if the user does not type it at the end of the filename they choose, it will be added for them.  They must not, however, choose a filename that ends in some other extension than .xls or the program will error. If the user has mistakenly misnamed their save directory and did not realize until the end of a long calculation, a backup of their data can be retrieved. More information about this is in section 5 of this readme.
@@ -43,7 +45,7 @@ At this point, the user must decide whether to run a local or NCBI server Blast,
 
 The details of each of these settings besides the e-value maximum will be discussed in sections 2,3, and 4. 
 
-When all the settings are set to the user's satisfaction, the Run GENe button should be pushed.  In most cases, the program should run appropriately until finished, but if the program errors or terminates early, the reasons why should be displayed on the python console. 
+When all the settings are set to the user's satisfaction, the Run GENe button should be pushed.  In most cases, the program should run appropriately until finished, but if the program errors or terminates early, the reasons why will be written into an error log that exists in the same directory that GENe is installed to. 
 
 The Excel file that is the result of this program is organized to show to the user three 'hits' for each sequence that were the results of the blast. How these hits are chosen is discussed in section 4. The leftmost column is the sequence that was blasted, and each hit has it's name (or title) listed, the e-value it scored, the acession number it has been assigned by NCBI, and, hopefully, its shortened gene name. Collecting the shortened gene name as metadata proved unsuccesful so I created a simple heuristic to scrape it from the full name of the gene. It is almost certain that only about 3/4 of hits will have a short gene name recorded, and among these it is likely that some are not entirely correct. The two rightmost columns are updated for each gene if a server Blast is being performed to give the user an idea of how long each query is taking, and if a local blast is being performed, then only the very last row will have this information and it will describe the lenth of the entire operation. 
 
@@ -104,8 +106,4 @@ A user or developer has two alternatives to using this algorithm: they may eithe
 
 If an excel file is lost, there will always be a backup of the most recent GENe operation performed saved as an excel file that will be present in the directory in which GENe was installed. 
 
-If the program terminates early, or errors for any reason, the error message should appear on the console. If an error persists and cannot be resolved, please feel free to contact me at ncowen@emailwm.edu
-
-
-
-
+If the program terminates early, or errors for any reason, the error message is written into a file called 'GENe Error Log.txt' that can also be found in the same directory as the backup file. If an error persists and cannot be resolved, please feel free to contact me at ncowen@emailwm.edu

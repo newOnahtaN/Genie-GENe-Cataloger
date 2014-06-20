@@ -255,7 +255,7 @@ class GENeGUI(wx.Frame):
 
 
 if __name__ == '__main__':
-	app = wx.App(False) #filename = 'GENe Error Log.txt')
+	app = wx.App(True, filename = 'GENe Error Log.txt')
 	frame = GENeGUI(parent=None, id=-1)
 	frame.Show()
 	app.MainLoop()
