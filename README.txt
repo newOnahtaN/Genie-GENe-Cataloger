@@ -46,10 +46,12 @@ Table of Contents
 1) Common Use and Basic Instructions
 ====================================
 
-Installation: Installation is as simple as downloading the installer and running
-it. GENe will install itself and you can then run the application directly.  If 
-you are viewing this file from GitHub, you will need to download this entire 
-repository and run GENe setup.exe installer.If you have trouble opening GENe 
+Installation: Installation is as simple as downloading the appropriate installer 
+for your operating system and running it. GENe will install itself according your 
+operating system and you can then run the application directly.  If 
+you are viewing this file from GitHub, you can either download this entire 
+repository or click on either the Mac or Windows installer and click on ‘view raw’,
+then you should run the GENe installer. If you have trouble opening GENe 
 after installing it on Windows, attempt to run it as an administrator. Once you 
 have done so, you can delete the rest of the files present if you are not 
 planning on developing further on the source code. 
@@ -272,9 +274,16 @@ to help, but I will be eager to help if I do.
 
 If an excel file is lost, there will always be a backup of the most recent GENe 
 operation performed saved as an excel file that will be present in the GENe folder 
-which is located in your 'User' directory, also known as your Home Directory.
+which is located in your 'User' directory, also known as your Home Directory. 
+This is only the case if you are on a Windows machine unfortunately because the
+Mac will not allow programs like this one to create directories. Instead, the Mac
+version saves a copy to this program’s working directory, which is very difficult 
+to access.
 
 If the program terminates early, or errors for any reason, the error message is 
 written into a file called 'GENe Error Log.txt' that can also be found in the 
-same directory as the backup file. If an error persists and cannot be resolved, 
-please feel free to contact me at ncowen@emailwm.edu
+same directory as the backup file if you are on Windows, and if you are on MacOS 
+then you can open it directly from the GUI.  If GENe errors, the error log will 
+not update until you close GENe, so when it does error on Mac, close it down, 
+open it up again, and then check the error log button If an error persists and 
+cannot be resolved, please feel free to contact me at ncowen@emailwm.edu
