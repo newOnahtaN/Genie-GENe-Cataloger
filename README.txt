@@ -1,4 +1,4 @@
-GENe BLAST Automation and Gene Cataloger - June 2014
+﻿GENe BLAST Automation and Gene Cataloger - June 2014
 Nathan Owen, ncowen@email.wm.edu
 Github and Source Files - https://github.com/newOnahtaN/Genie-GENe-Cataloger
 ========================================
@@ -46,15 +46,21 @@ Table of Contents
 1) Common Use and Basic Instructions
 ====================================
 
-Installation: Installation is as simple as downloading the appropriate installer 
-for your operating system and running it. GENe will install itself according your 
-operating system and you can then run the application directly.  If 
-you are viewing this file from GitHub, you can either download this entire 
-repository or click on either the Mac or Windows installer and click on ‘view raw’,
-then you should run the GENe installer. If you have trouble opening GENe 
-after installing it on Windows, attempt to run it as an administrator. Once you 
-have done so, you can delete the rest of the files present if you are not 
-planning on developing further on the source code. 
+Installation: 
+
+Windows: For windows, download the GENe Setup.exe file from github that resides in
+the GENe_Windows folder.  You can click directly on this file and then click on
+‘view raw data’ in order to download it directly.  You do not need to worry about
+any other files in this folder including the installer script unless you plan on 
+writing any more to my code. If you cannot ‘view raw data’, you will need to download
+the entire repository, and then only use the .exe in the specified directory.
+
+Mac: For Mac users, download the GENe.zip file from github that resides in the 
+GENe_Mac folder. You can click directly on this file and then click on ‘view raw
+data’ in order to download it directly. You do not need to worry about any other files
+in this folder unless you plan on writing any more to my code.  If you cannot 
+‘view raw data’, you will need to download the entire repository, and then only use
+the zip file in the specified directory.
 
 The first operations that are necessary for use of this program are found in the 
 top left corner of the window. The 'Open Excel File' button has the user choose 
@@ -286,4 +292,4 @@ same directory as the backup file if you are on Windows, and if you are on MacOS
 then you can open it directly from the GUI.  If GENe errors, the error log will 
 not update until you close GENe, so when it does error on Mac, close it down, 
 open it up again, and then check the error log button If an error persists and 
-cannot be resolved, please feel free to contact me at ncowen@emailwm.edu
+cannot be resolved, please feel free to contact me at ncowen@emailwm.edup
